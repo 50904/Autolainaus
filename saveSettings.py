@@ -99,13 +99,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         with open('setting.json', 'wt') as settingsFile:
             settingsFile.write(jsonData)
 
-
-
-
-    # Avataan MessageBox
+     # Avataan MessageBox
     def openWarning(self):
         msgBox = QtWidgets.QMessageBox()
-        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+        msgBox.setIcon(QtWidgets.QMessageBox.information)
         msgBox.setWindowTitle('Puuttuvat asetukset')
         msgBox.setText('Asetuksia ei ole tehty, syötä tietokannan asetukset')
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
