@@ -23,8 +23,15 @@
       <height>881</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="studentTab_2">
      <property name="cursor">
@@ -33,400 +40,215 @@
      <attribute name="title">
       <string>Lainaajat</string>
      </attribute>
-     <widget class="QTabWidget" name="valikko_3">
+     <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>-10</x>
-        <y>-20</y>
-        <width>761</width>
-        <height>821</height>
+        <x>20</x>
+        <y>20</y>
+        <width>101</width>
+        <height>16</height>
        </rect>
       </property>
-      <property name="currentIndex">
-       <number>1</number>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
-      <widget class="QWidget" name="studentTab_3">
-       <attribute name="title">
-        <string>Lainaajat</string>
-       </attribute>
-       <widget class="QTabWidget" name="valikko_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>-30</y>
-          <width>721</width>
-          <height>821</height>
-         </rect>
-        </property>
-        <property name="currentIndex">
-         <number>2</number>
-        </property>
-        <widget class="QWidget" name="studentTab_4">
-         <attribute name="title">
-          <string>Lainaajat</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="vechileTab_4">
-         <attribute name="title">
-          <string>Autot</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="reportsTab_4">
-         <attribute name="title">
-          <string>Raportit</string>
-         </attribute>
-         <widget class="QLabel" name="ssnLabel">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>40</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Henkilötunnus</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="firstnameLabel">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>70</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Etunimi</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="lastNameLabel">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>100</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sukunimi</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="grupLabel">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>130</y>
-            <width>47</width>
-            <height>13</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Ryhmä</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="vechileClassLabel">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>160</y>
-            <width>91</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Ajoneuvoluokka</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="ssnLineEdit">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>40</y>
-            <width>151</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="fistNameLineEdit">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>70</y>
-            <width>151</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lastNamelineEdit_">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>100</y>
-            <width>151</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="vechileClassLineEdit">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>160</y>
-            <width>151</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="groupComoBox">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>130</y>
-            <width>151</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QTableWidget" name="tableWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>260</y>
-            <width>601</width>
-            <height>341</height>
-           </rect>
-          </property>
-          <property name="rowCount">
-           <number>10</number>
-          </property>
-          <property name="columnCount">
-           <number>5</number>
-          </property>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <column/>
-          <column/>
-          <column/>
-          <column/>
-          <column/>
-         </widget>
-         <widget class="QLabel" name="label_32">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>230</y>
-            <width>131</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Rekisteröidyt lainaajat</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="savePushButton">
-          <property name="geometry">
-           <rect>
-            <x>270</x>
-            <y>160</y>
-            <width>81</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(51, 117, 216);
-color: rgb(245, 245, 245);</string>
-          </property>
-          <property name="text">
-           <string>Tallenna</string>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="vechileTab_3">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <attribute name="title">
-        <string>Autot</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="reportsTab_3">
-       <attribute name="title">
-        <string>Raportit</string>
-       </attribute>
-       <widget class="QLabel" name="label_11">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>40</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Henkilötunnus</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_12">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>70</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Etunimi</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_13">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>100</y>
-          <width>81</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Sukunimi</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>130</y>
-          <width>47</width>
-          <height>13</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Ryhmä</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>160</y>
-          <width>91</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Ajoneuvoluokka</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_5">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>40</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_9">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>70</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_10">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>100</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_11">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>160</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="comboBox_3">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>130</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
+      <property name="text">
+       <string>Henkilötunnus</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Etunimi</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>60</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Sukunimi</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ajoneuvoluokka</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>180</y>
+        <width>201</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>140</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>771</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="rowCount">
+       <number>10</number>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column/>
+      <column/>
+      <column/>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>180</y>
+        <width>151</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tallenna</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reksiteröidyt lainaajat</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ryhmä</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_6">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>100</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="vechileTab_2">
      <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
+      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <attribute name="title">
       <string>Autot</string>
@@ -443,6 +265,8 @@ color: rgb(245, 245, 245);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -461,6 +285,8 @@ color: rgb(245, 245, 245);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -479,6 +305,8 @@ color: rgb(245, 245, 245);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -497,6 +325,8 @@ color: rgb(245, 245, 245);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -555,6 +385,8 @@ color: rgb(245, 245, 245);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -633,7 +465,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="cursor" stdset="0">
-       <cursorShape>BlankCursor</cursorShape>
+       <cursorShape>ForbiddenCursor</cursorShape>
       </property>
       <property name="rowCount">
        <number>10</number>
@@ -671,6 +503,156 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Ryhmät</string>
+     </attribute>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>169</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ryhmän nimi</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>169</width>
+        <height>47</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Vastuuhenkilö</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>167</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_5">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>60</y>
+        <width>167</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>60</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(85, 170, 255);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Tallenna</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>771</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="rowCount">
+       <number>10</number>
+      </property>
+      <property name="columnCount">
+       <number>2</number>
+      </property>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <row/>
+      <column/>
+      <column/>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>121</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Tallennetut ryhmät</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="reportsTab_2">
      <attribute name="title">
       <string>Raportit</string>
@@ -687,6 +669,8 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -735,6 +719,8 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -773,6 +759,8 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -811,6 +799,8 @@ color: rgb(249, 249, 249);</string>
       <property name="font">
        <font>
         <pointsize>8</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="rowCount">
