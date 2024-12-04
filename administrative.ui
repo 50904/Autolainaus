@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>809</width>
-    <height>865</height>
+    <height>866</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="studentTab_2">
      <property name="cursor">
@@ -197,6 +197,10 @@
         <width>151</width>
         <height>23</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(85, 85, 255);
+color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Tallenna</string>
@@ -503,7 +507,7 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="groupTab">
      <attribute name="title">
       <string>Ryhmät</string>
      </attribute>
@@ -527,7 +531,7 @@ color: rgb(255, 255, 255);</string>
        <string>Ryhmän nimi</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="resonsivleLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -547,7 +551,7 @@ color: rgb(255, 255, 255);</string>
        <string>Vastuuhenkilö</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="groupNameLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -564,7 +568,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="responsibleDateEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -581,7 +585,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="savebutton">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -604,7 +608,7 @@ color: rgb(255, 255, 255);</string>
        <string>Tallenna</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_4">
+     <widget class="QTableWidget" name="groupTabelWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -632,7 +636,7 @@ color: rgb(255, 255, 255);</string>
       <column/>
       <column/>
      </widget>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="savedGroupLabel">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -875,12 +879,12 @@ color: rgb(249, 249, 249);</string>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionMuokkaa">
    <property name="text">
-    <string>Muokkaa</string>
+    <string>Muokkaa...</string>
    </property>
   </action>
   <action name="actionTietoja_ohjelmasta">
    <property name="text">
-    <string>Tietoja ohjelmasta</string>
+    <string>Tietoja ohjelmasta...</string>
    </property>
   </action>
  </widget>
