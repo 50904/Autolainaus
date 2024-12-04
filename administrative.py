@@ -1,5 +1,4 @@
-# PYSIDE6-MALLINE SOVELLUKSEN PÄÄIKKUNAN LUOMISEEN
-# KÄÄNNETYSTÄ KÄYTTÖLIITTYMÄTIEDOSTOSTA (mainWindow_ui.py)
+# Hallintasovelluksen pääikkuna ja dialogin koodi
 # =====================================================
 
 # KIRJASTOJEN JA MODUULIEN LATAUKSET
@@ -12,9 +11,11 @@ import json # JSON-objektien ja tiedostojen käsittely
 
 # Asennuksen vaativat kirjastot
 from PySide6 import QtWidgets # Qt-vimpaimet
-from administrative_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
-from settingsDialog_ui import Ui_Dialog # Asetukset-dialogin luokka
 
+# Käyttöliittymämoduulien lataukset
+from administrative_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
+from settingsDialog_ui import Ui_Dialog as Settings_Dialog # Asetukset-dialogin luokka
+from aboutDialog_ui import Ui_Dialog as About_Dialog
 
 # Omat moduulit
 import cipher
@@ -22,17 +23,15 @@ import cipher
 # LUOKKAMÄÄRITYKSET
 # -----------------
 
-# Määritellään pääikkunan luokka joka perii QMainWindow- ja Ui_
+# Määritellään pääikkunan luokka, joka perii QMainWindow- ja Ui_MainWindow-luokan
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """A class for creating main window for the application"""
-
-    # Määritellään oliomuodostin ja kutsutaan yliluokkien muodostimia
+    
+    # Määritellään olionmuodostin ja kutsutaan yliluokkien muodostimia
     def __init__(self):
         super().__init__()
 
-
-        # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindown:n ui-ominaisuudeksi.
-        # Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
+        # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
 
         # Kutsutaan käyttöliittymän muodostusmetodia setupUi
@@ -40,28 +39,34 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
-
-        # Kun Tallenna-painiketta on klikattu, kutsutaan saveToJsonFile-metodia 
-        self.ui.saveSettingspushButton.clicked.connect(self.saveToJsonFile)
-
-        # Asetukset-valikon muokkaa toiminto avaa Asetukset-dialogin-ikkunan
+        
+        # Asetukset-valikon muokkaa toiminto avaa Asetukset-dialogi-ikkunan
         self.ui.actionMuokkaa.triggered.connect(self.openSettingsDialog)
+        self.ui.actionTietoja_ohjelmasta.triggered.connect(self.openAboutDialog)
+        
 
+        
+   
+   
     # OHJELMOIDUT SLOTIT
-    # ------------------
-    # Tallennetaan käyttöliittymään syötetyt asetukset tiedostoon
-    def saveToJsonFile(self):
-       
+    # ==================
 
+    # DIALOGIEN AVAUSMETODIT
+    # ----------------------
 
-
+    # Asetusdialogin avaus
     def openSettingsDialog(self):
-        self.saveSettingsDialog = SaveSettingsDialog()
+        self.saveSettingsDialog = SaveSettingsDialog() # Luodaan luokasta olio
         self.saveSettingsDialog.setWindowTitle('Palvelinasetukset')
-        self.saveSettingsDialog.exec()
+        self.saveSettingsDialog.exec() # luodaan dialogille oma event loop
+        
+    # Tietoja ohjelmasta - dialogin avaus
+    def openAboutDialog(self):
+        self.aboutDialog = AboutDialog()
+        self.aboutDialog.setWindowTitle('Tietoja ohjelmasta')
+        self.aboutDialog.exec() # Luodaan dialogille event loop
 
-
-    # Avataan MessageBox
+    # Malli mahdollista virheilmoitusta varten
     def openWarning(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Critical)
@@ -70,26 +75,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
 
-# Asetusten tallennusikkuna luokka
-class SaveSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
-    """ A class to open settings dialog window"""
+# Asetusten tallennusikkunan luokka
+class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
+    """A class to open settings dialog window"""
+    
+    # Määritellään olionmuodostin ja kutsutaan yliluokkien muodostimia
     def __init__(self):
-        super.__init__()
-        
-         # Kutsutaan käyttöliittymän muodostusmetodia setupUi
+        super().__init__()
+
+        # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
+        self.ui = Settings_Dialog()
+
+        # Kutsutaan käyttöliittymän muodostusmetodia setupUi
         self.ui.setupUi(self)
 
         # Salausavain luottamuksellisten asetusten kryptaamiseen
         # Avainta ei saa vaihtaa ohjelman käyttöönoton jälkeen!
         # Avain on luotu cipher.py
-        self.secretKey = b'2bSsngqKLDl1vFNaU6tKu-FJITmWFSYrb2eXBvf8vag='
+        self.secretKey = b'8Zra5xvI3derJNwLCue1iDdw0lbZm_T0zXFaBknPXI4='
         self.cryptoEngine = cipher.createChipher(self.secretKey)
 
-  
-        # Luetaan asetustiedostot Python-sanakirjasta
+        # Luetaan asetustiedosto Python-sanakirjaksi
         self.currentSettings = {}
 
-        # Tarkistetaan ensin, että asetustiedot on olemassa
+        # Tarkistetaan ensin, että asetustiedosto on olemassa
+        # TODO: Yksinkertaista asetusten luku käyttämällä json.load-metodia
         try:
             with open('settings.json', 'rt') as settingsFile:
                 jsonData = settingsFile.read()
@@ -98,17 +108,24 @@ class SaveSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
             self.ui.serverLineEdit.setText(self.currentSettings['server'])
             self.ui.portLineEdit.setText(self.currentSettings['port'])
             self.ui.databaseLineEdit.setText(self.currentSettings['database'])
-            self.ui.serverLineEdit.setText(self.currentSettings['userName'])
-            self.ui.passwordLineEdit.setText(self.currentSettings['password'])
+            self.ui.userLineEdit.setText(self.currentSettings['userName'])
+            self.ui.paswordLineEdit.setText(self.currentSettings['password'])
         except Exception as e:
             self.openInfo()
+        
 
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
-        
-        # Tallennetaan käyttöliittymään syötetyt asetukset tiedostoon
+
+        # Kun Tallenna-painiketta on klikattu, kutsutaan saveToJsonFile-metodia
+        self.ui.saveSettingspushButton.clicked.connect(self.saveToJsonFile)
+    
+    # OHJELMOIDUT SLOTIT (Luokan metodit)
+    # -----------------------------------
+    
+    # Tallennetaan käyttöliittymään syötetyt asetukset tiedostoon
     def saveToJsonFile(self):
-       
+
         # Luetaan käyttöliittymästä tiedot paikallisiin muuttujiin
         server = self.ui.serverLineEdit.text()
         port = self.ui.portLineEdit.text()
@@ -117,45 +134,54 @@ class SaveSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
 
         # Muutetaan merkkijono tavumuotoon (byte, merkistö UTF-8)
         plainTextPassword = bytes(self.ui.passwordLineEdit.text(), 'utf-8')
-
+       
         # Salataan ja muunnetaan tavalliseksi merkkijonoksi, jotta JSON-tallennus onnistuu
         encryptedPassword = str(cipher.encrypt(self.cryptoEngine, plainTextPassword))
 
-        # TODO: Lisää tähän salasana kryptaus
-        
         # Muodostetaan muuttujista Python-sanakirja
         settingsDictionary = {
             'server': server,
             'port': port,
             'database': database,
             'userName': userName,
-            'password': encryptedPassword,
+            'password': encryptedPassword
+        }
 
-        }       
-
-        # Muunnetaan sanakirja Json-muotoon
+        # Muunnetaan sanakirja JSON-muotoon
+        # TODO: Yksinkertaista muuttamalla json.dum-metodia käyttäväksi
         jsonData = json.dumps(settingsDictionary)
-
-        # Avataan asetustiedosto kirjoitetaan asetukset
-        with open('setting.json', 'wt') as settingsFile:
+        
+        # Avataan asetustiedosto ja kirjoitetaan asetukset
+        with open('settings.json', 'wt') as settingsFile:
             settingsFile.write(jsonData)
 
+    
+    # Avataan MessageBox, jossa kerrotaan että tehdää uusi asetustiedosto
+    def openInfo(self):
+        msgBox = QtWidgets.QMessageBox()
+        msgBox.setIcon(QtWidgets.QMessageBox.Information)
+        msgBox.setWindowTitle('Luodaan uusi asetustiedosto')
+        msgBox.setText('Syötä kaikkien kenttien tiedot!')
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgBox.exec() # Luodaan Msg Box:lle oma event loop
 
-        # Avataan MessageBox, jossa kerrotaan että tehdään uusi asetustiedosto
-        def openInfo(self):
-            msgBox = QtWidgets.QMessageBox()
-            msgBox.setIcon(QtWidgets.QMessageBox.information)
-            msgBox.setWindowTitle('Luodaan uusi asetustiedosto')
-            msgBox.setText('Syötä kaikkien kenttien tiedot!')
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            msgBox.exec()
+class AboutDialog(QtWidgets.QDialog, About_Dialog):
+    """A class to show About dialog."""
+    def __init__(self):
+        super().__init__()
+    
+         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
+        self.ui = About_Dialog()
 
+        # Kutsutaan käyttöliittymän muodostusmetodia setupUi
+        self.ui.setupUi(self)
+
+         
 
 
 if __name__ == "__main__":
-
-
-    # Luodaan sovellus
+    
+    # Luodaan sovellus ja asetetaan tyyliksi Fusion
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle('fusion')
 
@@ -166,3 +192,5 @@ if __name__ == "__main__":
 
     # Käynnistetään sovellus ja tapahtumienkäsittelijä
     app.exec()
+
+    
