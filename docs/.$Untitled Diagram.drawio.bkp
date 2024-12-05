@@ -1,0 +1,52 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.1 Chrome/128.0.6613.186 Electron/32.2.6 Safari/537.36" version="25.0.1">
+  <diagram name="Page-1" id="R3op58ZjwZ73l5hla3it">
+    <mxGraphModel dx="1434" dy="956" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=7;" edge="1" parent="1" source="p-cD8MKfriiGf6G7qjtl-1" target="p-cD8MKfriiGf6G7qjtl-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-8" value="psycopg" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="p-cD8MKfriiGf6G7qjtl-7">
+          <mxGeometry x="-0.2586" y="-1" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-1" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.tablet_1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="60" width="61" height="79" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-2" value="Lainaussovellus&lt;div&gt;lending.py&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="65.5" y="145" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-3" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.database_server;" vertex="1" parent="1">
+          <mxGeometry x="360" y="185" width="80" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-4" value="PostgreSQL-palvelin&lt;div&gt;autolainaus-tietokanta&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="330" y="280" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=7;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="p-cD8MKfriiGf6G7qjtl-5" target="p-cD8MKfriiGf6G7qjtl-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-10" value="psycopg" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="p-cD8MKfriiGf6G7qjtl-9">
+          <mxGeometry x="-0.2262" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=1;" edge="1" parent="1" source="p-cD8MKfriiGf6G7qjtl-5" target="p-cD8MKfriiGf6G7qjtl-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="250" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-5" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.desktop;" vertex="1" parent="1">
+          <mxGeometry x="87" y="414" width="89" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-6" value="Hallintasovellus&lt;div&gt;administrative.py&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="75" y="513" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p-cD8MKfriiGf6G7qjtl-11" value="" style="verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;align=center;outlineConnect=0;shape=mxgraph.citrix.printer;" vertex="1" parent="1">
+          <mxGeometry x="175.5" y="280" width="70" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

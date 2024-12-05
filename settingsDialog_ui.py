@@ -22,7 +22,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(587, 360)
+        Dialog.resize(315, 173)
         self.databaseLabel = QLabel(Dialog)
         self.databaseLabel.setObjectName(u"databaseLabel")
         self.databaseLabel.setGeometry(QRect(20, 70, 71, 16))
@@ -39,10 +39,6 @@ class Ui_Dialog(object):
         self.ServerLabel.setObjectName(u"ServerLabel")
         self.ServerLabel.setGeometry(QRect(20, 10, 47, 13))
         self.ServerLabel.setFont(font)
-        self.passwordLineEdit = QLineEdit(Dialog)
-        self.passwordLineEdit.setObjectName(u"passwordLineEdit")
-        self.passwordLineEdit.setGeometry(QRect(110, 130, 151, 20))
-        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
         self.portLabel = QLabel(Dialog)
         self.portLabel.setObjectName(u"portLabel")
         self.portLabel.setGeometry(QRect(20, 40, 47, 13))
@@ -59,17 +55,14 @@ class Ui_Dialog(object):
         self.userLineEdit.setGeometry(QRect(110, 100, 151, 20))
         self.saveSettingspushButton = QPushButton(Dialog)
         self.saveSettingspushButton.setObjectName(u"saveSettingspushButton")
-        self.saveSettingspushButton.setGeometry(QRect(170, 160, 91, 31))
+        self.saveSettingspushButton.setEnabled(True)
+        self.saveSettingspushButton.setGeometry(QRect(190, 130, 71, 21))
         font1 = QFont()
         font1.setPointSize(11)
         font1.setBold(True)
         self.saveSettingspushButton.setFont(font1)
         self.saveSettingspushButton.setStyleSheet(u"background-color: rgb(85, 85, 255);\n"
 "color: rgb(255, 255, 255);")
-        self.passwordLabel = QLabel(Dialog)
-        self.passwordLabel.setObjectName(u"passwordLabel")
-        self.passwordLabel.setGeometry(QRect(20, 130, 71, 16))
-        self.passwordLabel.setFont(font)
 
         self.retranslateUi(Dialog)
 
@@ -83,6 +76,5 @@ class Ui_Dialog(object):
         self.portLabel.setText(QCoreApplication.translate("Dialog", u"Portti", None))
         self.userLabel.setText(QCoreApplication.translate("Dialog", u"K\u00e4ytt\u00e4j\u00e4tunnus", None))
         self.saveSettingspushButton.setText(QCoreApplication.translate("Dialog", u"Tallenna", None))
-        self.passwordLabel.setText(QCoreApplication.translate("Dialog", u"Salasana", None))
     # retranslateUi
 
