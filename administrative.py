@@ -109,7 +109,9 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
             self.ui.portLineEdit.setText(self.currentSettings['port'])
             self.ui.databaseLineEdit.setText(self.currentSettings['database'])
             self.ui.userLineEdit.setText(self.currentSettings['userName'])
-            self.ui.paswordLineEdit.setText(self.currentSettings['password'])
+            plainTextPassword = cipher.decryptString(self.currentSettings['password'])
+
+            self.ui.passwordLineEdit.setText(plainTextPassword)
         except Exception as e:
             self.openInfo()
         
@@ -120,11 +122,15 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
         # Kun Tallenna-painiketta on klikattu, kutsutaan saveToJsonFile-metodia
         self.ui.saveSettingspushButton.clicked.connect(self.saveToJsonFile)
     
+    # Suljepainikkeen toiminnot
+        self.ui.closePushButton.cliked.connect(self.closeSettingsDialog)
     # OHJELMOIDUT SLOTIT (Luokan metodit)
     # -----------------------------------
     
     # Tallennetaan käyttöliittymään syötetyt asetukset tiedostoon
     def saveToJsonFile(self):
+        def closeSettingsDialog(self):
+            self.close()
 
         # Luetaan käyttöliittymästä tiedot paikallisiin muuttujiin
         server = self.ui.serverLineEdit.text()
@@ -133,10 +139,10 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
         userName = self.ui.userLineEdit.text()
 
         # Muutetaan merkkijono tavumuotoon (byte, merkistö UTF-8)
-        plainTextPassword = bytes(self.ui.passwordLineEdit.text(), 'utf-8')
+        plainTextPassword = self.ui.passwordLineEdit.text()
        
         # Salataan ja muunnetaan tavalliseksi merkkijonoksi, jotta JSON-tallennus onnistuu
-        encryptedPassword = str(cipher.encrypt(self.cryptoEngine, plainTextPassword))
+        encryptedPassword = cipher.encryptString(plainTextPassword)
 
         # Muodostetaan muuttujista Python-sanakirja
         settingsDictionary = {

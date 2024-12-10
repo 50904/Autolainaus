@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="valikko_2">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
       <width>821</width>
       <height>881</height>
@@ -31,7 +31,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="studentTab_2">
      <property name="cursor">
@@ -446,6 +446,8 @@ color: rgb(247, 247, 247);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="cursor">
@@ -588,14 +590,15 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="savebutton">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>60</y>
+        <x>300</x>
+        <y>61</y>
         <width>121</width>
-        <height>31</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
+        <pointsize>10</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -873,6 +876,7 @@ color: rgb(249, 249, 249);</string>
     </property>
     <addaction name="actionMuokkaa"/>
     <addaction name="actionTietoja_ohjelmasta"/>
+    <addaction name="actionvaihdaSalasana"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -885,6 +889,11 @@ color: rgb(249, 249, 249);</string>
   <action name="actionTietoja_ohjelmasta">
    <property name="text">
     <string>Tietoja ohjelmasta...</string>
+   </property>
+  </action>
+  <action name="actionvaihdaSalasana">
+   <property name="text">
+    <string>Salasana...</string>
    </property>
   </action>
  </widget>
