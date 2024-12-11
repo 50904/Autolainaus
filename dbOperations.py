@@ -29,8 +29,9 @@ class DbConnection():
         self.password = settings['password']
 
         # Yhteysmerkkijono
-        self.connectionString = f"dbname={self.databaseName} user={self.userName} password={self.password} host={self.server} port={self.port}'
+        self.connectionString =f'dbname={self.databaseName} user={self.userName} password={self.password} host={self.server} port={self.port}'
         
+
         print("Yhteysmerkkijono on:", self.connectionString)
     # Metodi tietojen lisäämiseen (INSERT)
     def addToTable(self, table: str, data: dict) -> str:
@@ -47,7 +48,7 @@ class DbConnection():
 
         # Muodostetaan lista sarakkeiden (kenttien) nimistä ja arvoista SQL laustetta varten
         keys = data.keys() # Luetaan sanakirjan avaimet
-        columns = '' # SQL-lauseeseen tarvittavat sarakemerkkijono
+        columns = '' # SQL-lauseeseen tarvittava sarakemerkkijono
         values = '' # SQL-lauseen arvot merkkijonona
 
         # Luetaan kaikki avaimet sekä arvot ja lisätään ne listoihin
@@ -55,17 +56,16 @@ class DbConnection():
             columns += key + ', ' # Lisätään pilkku
             rawValue = data[key] # Luetaan sanakirjan arvo
 
-            # Lisätään puolilainausmerkit, jos kyseessä on merkkijono 
+            # Lisätään puolilainausmerkit, jos kyseessä on merkkijono
             if isinstance(rawValue, str):
-                value = f'\'{rawValue}\'' # \'Mahdollistaa puolilainausmerkin lisäämisen
+                value = f'\'{rawValue}\'' # \' mahdollistaa puolilainausmerkin lisäämisen
             else:
                 value = rawValue
             values += value + ', ' # Lisätään arvo sekä pilkku ja välilyönti
 
         # Poistetaan sarakkeista ja arvoista viimeinen pilkku ja välilyönti
-        columns = columns[:-2] 
+        columns = columns[:-2]
         values = values[:-2]
-
 
         # Määritellään tilaviestiksi tyhjä merkkijono
         message = ''
@@ -80,7 +80,7 @@ class DbConnection():
 
             # Määritellään lopullinen SQL-lause
             sqlClause = f'INSERT INTO {table} ({columns}) VALUES ({values})'
-            print('SQL-lause on:', SQL)
+            print('SQL-lause on:', sqlClause)
             # Suoritetaan SQL-lause
             cursor.execute(sqlClause)
 
@@ -103,14 +103,14 @@ class DbConnection():
         
 if __name__ == "__main__":
 
-    testDictionary = {'server': '127.0.0.1',
+    testDictionary = {'server': 'localhost',
                       'port': '5432',
                       'database': 'testi',
                       'userName': 'user',
                       'password': 'salasana'}    
     
-    tableDictionary = {'etunimi': 'Erkki',
-                       'sukunimi': 'Esimerkki'}
+    tableDictionary = {'etunimi': 'Uolevi',
+                       'sukunimi': 'Untamo'}
     
     
     dbConnection = DbConnection(testDictionary)
@@ -118,4 +118,6 @@ if __name__ == "__main__":
     print('Yhteysmerkkijono on:', dbConnection.connectionString)
 
     dbConnection.addToTable('testitaulu', tableDictionary)
+    
+
     
