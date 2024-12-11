@@ -2,6 +2,8 @@
 # =============================================================
 
 # KIRJASTOJEN JA MODUULIEN LATAUKSET
+# ----------------------------------
+
 from cryptography.fernet import Fernet
 
 def newKey() -> str: 
@@ -25,7 +27,7 @@ def createChipher(key: str) -> object:
     chipher = Fernet(key)
     return chipher
 
-def encrypt(chipher: object, plainText: str) -> str:
+def encrypt(chipher: object, plainText: bytes) -> str:
     """Encrypts a message usinf Fernet algorithm
 
     Args:
@@ -55,8 +57,6 @@ def decrypt(chipher: object, cryptoText: str, byteMode: bool=False) -> str:
         plaintext = chipher.decrypt(cryptoText).decode()
     return plaintext
 
-# TODO: Lisää jossain vaiheessa funktiot, jotka ottavat parametriksi avaimen ja tekstin
-
 def encryptString(plainText: str, key=b'8Zra5xvI3derJNwLCue1iDdw0lbZm_T0zXFaBknPXI4=') -> str:
     """Encrypts a block of plain text into Fernet string
 
@@ -85,8 +85,13 @@ def decryptString(cryptoText: str, key=b'8Zra5xvI3derJNwLCue1iDdw0lbZm_T0zXFaBkn
     chipherEngine = createChipher(key)
     plainText = decrypt(chipherEngine, cryptoText)
     return plainText
-# 
+
+
+
 if __name__ == "__main__":
-    
-    secretKey = newKey()
-    print (secretKey)
+
+    selko = 'Hippopotamus'
+    sala = encryptString(selko)
+    print('Salakirjoitettuna se on:', sala)
+    purettu = decryptString(sala)
+    print('Purettuna se on:', purettu)

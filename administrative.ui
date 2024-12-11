@@ -513,7 +513,7 @@ color: rgb(255, 255, 255);</string>
      <attribute name="title">
       <string>Ryhmät</string>
      </attribute>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="groupNameLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -533,7 +533,7 @@ color: rgb(255, 255, 255);</string>
        <string>Ryhmän nimi</string>
       </property>
      </widget>
-     <widget class="QLabel" name="resonsivleLabel">
+     <widget class="QLabel" name="responsibleLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -570,7 +570,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
      </widget>
-     <widget class="QLineEdit" name="responsibleDateEdit">
+     <widget class="QLineEdit" name="responsibleLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -587,7 +587,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
      </widget>
-     <widget class="QPushButton" name="savebutton">
+     <widget class="QPushButton" name="saveGroupPushbutton">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -611,7 +611,7 @@ color: rgb(255, 255, 255);</string>
        <string>Tallenna</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="groupTabelWidget">
+     <widget class="QTableWidget" name="saveGroupTabelWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
