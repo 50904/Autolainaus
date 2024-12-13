@@ -188,7 +188,7 @@ color: rgb(255, 255, 255);</string>
     <enum>QLineEdit::PasswordEchoOnEdit</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="closepushButton">
+  <widget class="QPushButton" name="closePushButton">
    <property name="geometry">
     <rect>
      <x>110</x>

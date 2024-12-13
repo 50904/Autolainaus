@@ -14,10 +14,10 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="valikko_2">
+   <widget class="QTabWidget" name="saveVehicle">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>0</y>
       <width>821</width>
       <height>881</height>
@@ -31,7 +31,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="studentTab_2">
      <property name="cursor">
@@ -60,7 +60,7 @@
        <string>Henkilötunnus</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="ssnLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -70,11 +70,11 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="firstNameLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>60</y>
+        <y>50</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -90,11 +90,11 @@
        <string>Etunimi</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="lastNameLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>60</y>
+        <y>80</y>
         <width>201</width>
         <height>20</height>
        </rect>
@@ -104,7 +104,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>80</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -120,12 +120,12 @@
        <string>Sukunimi</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="licenseTypeLabel">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>101</width>
+        <x>20</x>
+        <y>140</y>
+        <width>91</width>
         <height>16</height>
        </rect>
       </property>
@@ -137,34 +137,37 @@
        </font>
       </property>
       <property name="text">
-       <string>Ajoneuvoluokka</string>
+       <string>Ajokorttiluokka</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="emailLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>180</y>
+        <y>170</y>
         <width>201</width>
         <height>21</height>
        </rect>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="groupComboBox">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>140</y>
+        <y>110</y>
         <width>201</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="currentText">
+       <string/>
       </property>
      </widget>
      <widget class="QTableWidget" name="tableWidget_2">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>250</y>
+        <y>300</y>
         <width>771</width>
         <height>331</height>
        </rect>
@@ -189,7 +192,7 @@
       <column/>
       <column/>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="savePersonPushButton">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -209,8 +212,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>220</y>
+        <x>20</x>
+        <y>280</y>
         <width>151</width>
         <height>16</height>
        </rect>
@@ -219,11 +222,11 @@ color: rgb(255, 255, 255);</string>
        <string>Reksiteröidyt lainaajat</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_10">
+     <widget class="QLabel" name="groupLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>140</y>
+        <y>110</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -239,11 +242,34 @@ color: rgb(255, 255, 255);</string>
        <string>Ryhmä</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="vehicleClassLineEdit">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>100</y>
+        <y>140</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="emailLabel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sähköposti</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="firstNameLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
         <width>201</width>
         <height>20</height>
        </rect>
@@ -407,7 +433,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="printSaveButton">
+     <widget class="QPushButton" name="saveVehiclePushButton">
       <property name="geometry">
        <rect>
         <x>260</x>

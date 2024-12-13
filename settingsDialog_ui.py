@@ -76,11 +76,11 @@ class Ui_Dialog(object):
         font3.setPointSize(8)
         self.lineEdit.setFont(font3)
         self.lineEdit.setEchoMode(QLineEdit.PasswordEchoOnEdit)
-        self.closepushButton = QPushButton(Dialog)
-        self.closepushButton.setObjectName(u"closepushButton")
-        self.closepushButton.setGeometry(QRect(110, 180, 75, 23))
-        self.closepushButton.setFont(font)
-        self.closepushButton.setStyleSheet(u"background-color: rgb(85, 0, 255);\n"
+        self.closePushButton = QPushButton(Dialog)
+        self.closePushButton.setObjectName(u"closePushButton")
+        self.closePushButton.setGeometry(QRect(110, 180, 75, 23))
+        self.closePushButton.setFont(font)
+        self.closePushButton.setStyleSheet(u"background-color: rgb(85, 0, 255);\n"
 "color: rgb(255, 255, 255);")
 
         self.retranslateUi(Dialog)
@@ -96,6 +96,6 @@ class Ui_Dialog(object):
         self.userLabel.setText(QCoreApplication.translate("Dialog", u"K\u00e4ytt\u00e4j\u00e4tunnus", None))
         self.saveSettingspushButton.setText(QCoreApplication.translate("Dialog", u"Tallenna", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"Salasana", None))
-        self.closepushButton.setText(QCoreApplication.translate("Dialog", u"Sulje", None))
+        self.closePushButton.setText(QCoreApplication.translate("Dialog", u"Sulje", None))
     # retranslateUi
 
