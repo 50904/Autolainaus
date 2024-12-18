@@ -152,7 +152,7 @@ color: rgb(255, 255, 255);</string>
     <string>Tallenna</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="passwordLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -170,7 +170,7 @@ color: rgb(255, 255, 255);</string>
     <string>Salasana</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="passwordLineEdit">
    <property name="geometry">
     <rect>
      <x>110</x>

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="saveVehicle">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -33,7 +33,7 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="studentTab_2">
+    <widget class="QWidget" name="lenderTab">
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
@@ -163,7 +163,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_2">
+     <widget class="QTableWidget" name="registeredPersonTableWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -176,7 +176,7 @@
        <number>10</number>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>6</number>
       </property>
       <row/>
       <row/>
@@ -188,6 +188,9 @@
       <row/>
       <row/>
       <row/>
+      <column/>
+      <column/>
+      <column/>
       <column/>
       <column/>
       <column/>
@@ -209,7 +212,7 @@ color: rgb(255, 255, 255);</string>
        <string>Tallenna</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="registeredUserLabel">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -276,7 +279,7 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="vechileTab_2">
+    <widget class="QWidget" name="vechileTab">
      <property name="cursor">
       <cursorShape>ArrowCursor</cursorShape>
      </property>
@@ -613,7 +616,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
      </widget>
-     <widget class="QPushButton" name="saveGroupPushbutton">
+     <widget class="QPushButton" name="saveGroupPushButton">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -686,7 +689,7 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="reportsTab_2">
+    <widget class="QWidget" name="reportsTab">
      <attribute name="title">
       <string>Raportit</string>
      </attribute>
