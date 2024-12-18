@@ -61,7 +61,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except Exception as e:
             self.openSettingsDialog()
 
-            
+        # FIXME: Poista kaikki print-kommennot, kun koodi on muuten valmista!
+        
+
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
         
@@ -128,7 +130,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Tehdään lista ryhmät-yhdistelmäruudun arvoista
         groupList = dbConnection.readColumsFromTable('ryhma',['ryhma'])
 
-        # TODO: Päivitetään elementin arvot
         groupStringList = []
         for item in groupList:
             stringValue = str (item[0])
@@ -167,8 +168,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Autot- taulukon päivitys
     def updateVechileTableWidget(self):
-        pass
-          # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
@@ -176,13 +176,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        # Tehdään lista auto-taulun tiedoista
+        # Tehdään lista lainaaja-taulun tiedoista
         tableData = dbConnection.readAllColumnsFromTable('auto')
-        print('Autotaulun tiedot ovat:', tableData)
+        print('Auto-taulun tiedot:', tableData)
+
+        # Määritellään taulukkoelementin ostsikot
+        headerRow = ['Rekisteri', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä']
+        self.ui.vechicleCatalogTableWidget.setHorizontalHeaderLabels(headerRow)
+
+        # Asetetaan taulukon solujen arvot
+        for row in range(len(tableData)): # Luetaan listaa riveittäin
+            for column in range(len(tableData[row])): # Luetaan monikkoa sarakkettain
+                
+                # Muutetaan merkkijonoksi ja QTableWidgetItem
+                data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
+                self.ui.vechicleCatalogTableWidget.setItem(row, column, data)
 
     # Ryhmät- taulukon päivitys
     def updateGroupsTableWidget(self):
-        pass
           # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
@@ -191,9 +202,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        # Tehdään lista ryhma-taulun tiedoista
+        # Tehdään lista lainaaja-taulun tiedoista
         tableData = dbConnection.readAllColumnsFromTable('ryhma')
-        print('ryhmataulun tiedot:', tableData)
+        print('Ryhmä-taulun tiedot:', tableData)
+
+        # Määritellään taulukkoelementin ostsikot
+        headerRow = ['Ryhmä', 'Vastuuhenkilö']
+        self.ui.saveGroupTabelWidget.setHorizontalHeaderLabels(headerRow)
+
+        # Asetetaan taulukon solujen arvot
+        for row in range(len(tableData)): # Luetaan listaa riveittäin
+            for column in range(len(tableData[row])): # Luetaan monikkoa sarakkettain
+                
+                # Muutetaan merkkijonoksi ja QTableWidgetItem
+                data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
+                self.ui.saveGroupTabelWidget.setItem(row, column, data)
+
 
 
     # Painikkeiden slotit
@@ -221,6 +245,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kutsutaan tallennusmetodia
         try:
             dbConnection.addToTable(tableName, groupDictionary)
+            self.updateGroupsTableWidget()
         except Exception as e:
             print('Virheilmoitus', str(e))
             self.openWarning('Tallennus ei onnistunut', str(e))
@@ -254,6 +279,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kutsutaan tallennusmetodia
         try:
             dbConnection.addToTable(tableName, lenderDictionary)
+            self.updateLenderTableWidget()
         except Exception as e:
             print('Virheilmoitus', str(e))
             self.openWarning('Tallennus ei onnistunut', str(e)) 
@@ -265,7 +291,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword
         
-        numberPlate = self.ui.numberPlateLineEdit.text()
+        numberPlate = self.ui.registerNumberlineEdit.text()
         manufacturer = self.ui.manufacturerLineEdit.text()
         model = self.ui.modelLineEdit.text()
         year = self.ui.modelYearLineEdit.text()
@@ -285,6 +311,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kutsutaan tallennusmetodia
         try:
             dbConnection.addToTable(tableName, vehicleDictionary)
+            self.updateVechileTableWidget()
         except Exception as e:
             print('Virheilmoitus', str(e))
             self.openWarning('Tallennus ei onnistunut', str(e))

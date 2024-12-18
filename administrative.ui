@@ -31,7 +31,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -286,7 +286,7 @@ color: rgb(255, 255, 255);</string>
      <attribute name="title">
       <string>Autot</string>
      </attribute>
-     <widget class="QLabel" name="registerNumberLabel">
+     <widget class="QLabel" name="registerNumber">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -376,7 +376,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="markeLineEdit">
+     <widget class="QLineEdit" name="manufacturerLineEdit">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -396,7 +396,7 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="yearModelLineEdit">
+     <widget class="QLineEdit" name="modelYearLineEdit">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -426,7 +426,7 @@ color: rgb(255, 255, 255);</string>
        <string>Henkilömäärä</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="personCountLineEdit">
+     <widget class="QLineEdit" name="capacityLineEdit">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -490,7 +490,7 @@ color: rgb(255, 255, 255);</string>
        <string>Viivakoodi</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="vechicleCatalogTableWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
