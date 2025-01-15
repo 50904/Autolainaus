@@ -1,5 +1,5 @@
-# MODUULI SALAUAVAINTEN JA FERNET-SALAUKSEEN JA SEN PURKAMISEEN
-# =============================================================
+# MODUULI SALAUSAVAINTEN LUOMISEEN, FERNET-SALAUKSEEN JA SEN PURKAMISEEN
+# ======================================================================
 
 # KIRJASTOJEN JA MODUULIEN LATAUKSET
 # ----------------------------------
@@ -89,9 +89,13 @@ def decryptString(cryptoText: str, key=b'8Zra5xvI3derJNwLCue1iDdw0lbZm_T0zXFaBkn
 
 
 if __name__ == "__main__":
-
-    selko = 'Hippopotamus'
+    key = b'XX1jpDo7aQeDExbSlFGoSDCpSv2OMPDcGrU9YYNLx9Q='
+    selko =  b'Selkokielitesti'
+    sifferi = createChipher(key)
+    sala = encrypt(sifferi, selko)
+    print(sala)
+    """ selko = 'Hippopotamus'
     sala = encryptString(selko)
     print('Salakirjoitettuna se on:', sala)
     purettu = decryptString(sala)
-    print('Purettuna se on:', purettu)
+    print('Purettuna se on:', purettu) """
