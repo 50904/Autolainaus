@@ -13,7 +13,6 @@ import json
 # Omat moduulit
 import cipher
 
-
 # LUOKAT
 # ------
 
@@ -187,29 +186,11 @@ class DbConnection():
         
 if __name__ == "__main__":
 
-    testDictionary = {'server': 'localhost',
-                      'port': '5432',
-                      'database': 'autolainaus',
-                      'userName': 'autolainaus',
-                      'password': 'Q2werty'}    
-    
-    tableDictionary = {'etunimi': 'Uolevi',
-                       'sukunimi': 'Untamo'}
-    
-    
-    dbConnection = DbConnection(testDictionary)
+    settingsDictionary = {'server': 'localhost', 
+                      'port': '5433',
+                      'database': 'testaus',
+                      'userName': 'postgres',
+                      'password': 'Q2werty'}
+    dbconnection = DbConnection(settingsDictionary)
 
-    print('Yhteysmerkkijono on:', dbConnection.connectionString)
-
-    # dbConnection.addToTable('testitaulu', tableDictionary)
-    recordSet = dbConnection.readAllColumnsFromTable('ryhma')
-    print('Ryhmän tiedot ovat:', recordSet)
-
-    recordSet2 = dbConnection.readColumsFromTable('ryhma', ['ryhma', 'vastuuhenkilo'])
-    print('Ryhmät ja vastuuhenkilöt ovat:', recordSet2)
-
-    recordSet3 = dbConnection.readColumsFromTable('ryhma',['vastuuhenkilo'])
-    print('Vastuuhenkilöitä ovat:', recordSet3)
-
-    
-    
+    print(dbconnection.connectionString)

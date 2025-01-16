@@ -1,6 +1,10 @@
 -- Tämä on SQL-kielinen varmuuskopio testaus-tieyokannasta
 -- Luo ensin tietokanta PGAdmin ohjelmassa nimellä testaus
 -- Avaa sen jälkeen kyselyikkuna (Query Editor) ja liitä
+-- tämä skripti ikkunaan ja paina suorita painiketta (kolmio)
+
+
+
 -- PostgreSQL database dump
 --
 
