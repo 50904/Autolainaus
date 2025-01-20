@@ -7,10 +7,9 @@
 import os # Polkumääritykset
 import sys # Käynnistysargumentit
 
-from PySide6 import QtWidgets # Qt-vimpaimet
+import dbOperations
 
-# Tuodaan käyttöliittymään Pythoniksi käännetty tiedosto 
-# Korvaa mainwindow_ui todellisella tiedoston nimellä
+from PySide6 import QtWidgets # Qt-vimpaimet
 from tietokantaTesti_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
 
 # Määritellään luokka joka perii QMainWindow- ja Ui_
@@ -35,24 +34,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kun tallennuspainiketta on klikattu, kutsutaan metodia 
         self.ui.savePushButton.clicked.connect(self.saveData)
 
+        self.settingsDictionary = {'server': 'localhost', 
+                      'port': '5433',
+                      'database': 'testaus',
+                      'userName': 'postgres',
+                      'password': 'Q2werty'}
+
         
     # OHJELMOIDUT SLOTIT
     # ------------------
 
     # Tallennetaan syötetyt tiedot tietokantaan
     def saveData(self):
-        pass 
-    # Muutetaan tulostettuLabel:n sisältö: teksti ja väri
-    def updatePrintedLabel(self):
-        self.ui.tulostettuLabel.setText('Tulostettu')
-        self.ui.tulostettuLabel.setStyleSheet(u"color: rgb(0, 255, 0)")
+        dbconnection = dbOperations.DbConnection(self.settingsDictionary)
+        data = {'etunimi': self.ui.firstNameLineEdit.text(),
+                'sukunimi': self.ui.lastNameLineEdit.text()}
+        dbconnection.addToTable('person', data)
+        self.openWarning()
+        self.ui.firstNameLineEdit.clear()
+        self.ui.lastNameLineEdit.clear()
+        
 
     # Avataan MessageBox
     def openWarning(self):
         msgBox = QtWidgets.QMessageBox()
-        msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-        msgBox.setWindowTitle('Hirveetä!')
-        msgBox.setText('Jotain kamalaa tapahtui')
+        msgBox.setIcon(QtWidgets.QMessageBox.Information)
+        msgBox.setWindowTitle('Tiedot tallennettu')
+        msgBox.setText(f'Henkilön {self.ui.lastNameLineEdit.text()}: tiedot menivät tietokantaan')
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
 

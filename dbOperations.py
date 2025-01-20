@@ -191,6 +191,6 @@ if __name__ == "__main__":
                       'database': 'testaus',
                       'userName': 'postgres',
                       'password': 'Q2werty'}
-    dbconnection = DbConnection(settingsDictionary)
+    dbConnection = DbConnection(settingsDictionary)
 
-    print(dbconnection.connectionString)
+    print(dbConnection.connectionString)

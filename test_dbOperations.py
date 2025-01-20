@@ -10,16 +10,24 @@ settingsDictionary = {'server': 'localhost',
                       'userName': 'postgres',
                       'password': 'Q2werty'}
 
-dbconnection = dbOperations.DbConnection(settingsDictionary)
+newValues = {'sukunimi': 'Onneton',
+             'etunimi': 'Ossian'}
+
+dbConnection = dbOperations.DbConnection(settingsDictionary)
 
 # Testataan, että yhteysmerkkijono muodostuu oikein
 def test_connectionString():
-    assert dbconnection.connectionString == f'dbname=testaus user=postgres password=Q2werty host=localhost port=5433'
+    assert dbConnection.connectionString == f'dbname=testaus user=postgres password=Q2werty host=localhost port=5433'
 
 # Testataan että taulun kaikki tiedot saadaan ja ensimmäinen rivi on Virtanen Ville
 def test_readOneRow():
-    resultList = dbconnection.readAllColumnsFromTable('person') # Hakee taulun kaikki rivit listaan
+    resultList = dbConnection.readAllColumnsFromTable('person') # Hakee taulun kaikki rivit listaan
     assert resultList[0] == (1, 'Virtanen', 'Ville') # Ensimmäinen rivi pitäisi olla 1 Virtanen Ville
 
 
-# TODO: Mieti mitä muita testejä pitää kirjoittaa
+# Testataan tietueen / rivin (record / row) lisäys tauluun (table)
+def test_addRow():
+    dbConnection.addToTable('person', newValues)
+    resultList = dbConnection.readAllColumnsFromTable('person')
+    rowCount = len(resultList)
+    assert resultList[rowCount-1] == (rowCount, 'Onneton', 'Ossian')
