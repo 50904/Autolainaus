@@ -15,23 +15,32 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QLabel, QLineEdit,
+from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QWidget)
+import testPictures_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(399, 288)
+        Form.resize(706, 514)
+        Form.setStyleSheet(u"background-color: rgb(255, 64, 150);")
         self.label = QLabel(Form)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(80, 30, 81, 16))
+        self.label.setGeometry(QRect(30, 40, 81, 16))
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(80, 60, 113, 22))
-        self.checkBox = QCheckBox(Form)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setGeometry(QRect(220, 60, 79, 20))
+        self.lineEdit.setGeometry(QRect(30, 70, 113, 22))
+        self.palaaPushButton = QPushButton(Form)
+        self.palaaPushButton.setObjectName(u"palaaPushButton")
+        self.palaaPushButton.setGeometry(QRect(380, 310, 75, 23))
+        self.palaaPushButton.setStyleSheet(u"\n"
+"color: rgb(0, 0, 0);")
+        self.studentPictureLabel = QLabel(Form)
+        self.studentPictureLabel.setObjectName(u"studentPictureLabel")
+        self.studentPictureLabel.setGeometry(QRect(70, 310, 161, 161))
+        self.studentPictureLabel.setPixmap(QPixmap(u":/png/student.png"))
+        self.studentPictureLabel.setScaledContents(True)
 
         self.retranslateUi(Form)
 
@@ -42,6 +51,7 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"Palautus", None))
         self.lineEdit.setText(QCoreApplication.translate("Form", u"Avain", None))
-        self.checkBox.setText(QCoreApplication.translate("Form", u"CheckBox", None))
+        self.palaaPushButton.setText(QCoreApplication.translate("Form", u"Palaa", None))
+        self.studentPictureLabel.setText("")
     # retranslateUi
 

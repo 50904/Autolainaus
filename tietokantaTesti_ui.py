@@ -25,15 +25,27 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(800, 628)
         MainWindow.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        icon = QIcon(QIcon.fromTheme(u"emblem-shared"))
+        icon = QIcon()
+        iconThemeName = u"emblem-shared"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         MainWindow.setWindowIcon(icon)
         MainWindow.setToolTipDuration(3000)
         MainWindow.setStyleSheet(u"background-color: rgb(223, 32, 122)")
         self.actionLopeta = QAction(MainWindow)
         self.actionLopeta.setObjectName(u"actionLopeta")
-        icon1 = QIcon(QIcon.fromTheme(u"application-exit"))
+        icon1 = QIcon()
+        iconThemeName = u"application-exit"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon1 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon1.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionLopeta.setIcon(icon1)
         self.actionKalle = QAction(MainWindow)
         self.actionKalle.setObjectName(u"actionKalle")
@@ -59,7 +71,7 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.firstNameLabel.setFont(font)
         self.firstNameLabel.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.firstNameLabel.setTextFormat(Qt.TextFormat.RichText)
+        self.firstNameLabel.setTextFormat(Qt.PlainText)
         self.lastNameLineEdit = QLineEdit(self.centralwidget)
         self.lastNameLineEdit.setObjectName(u"lastNameLineEdit")
         self.lastNameLineEdit.setGeometry(QRect(170, 40, 113, 20))
@@ -68,7 +80,7 @@ class Ui_MainWindow(object):
         self.lastNameLabel.setGeometry(QRect(170, 10, 111, 16))
         self.lastNameLabel.setFont(font)
         self.lastNameLabel.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.lastNameLabel.setTextFormat(Qt.TextFormat.RichText)
+        self.lastNameLabel.setTextFormat(Qt.PlainText)
         self.savePushButton = QPushButton(self.centralwidget)
         self.savePushButton.setObjectName(u"savePushButton")
         self.savePushButton.setGeometry(QRect(210, 80, 75, 31))
@@ -76,20 +88,20 @@ class Ui_MainWindow(object):
         self.savePushButton.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.keyPictureLabel = QLabel(self.centralwidget)
         self.keyPictureLabel.setObjectName(u"keyPictureLabel")
-        self.keyPictureLabel.setGeometry(QRect(390, 120, 241, 231))
+        self.keyPictureLabel.setGeometry(QRect(380, 80, 241, 231))
         self.keyPictureLabel.setPixmap(QPixmap(u":/png/Keys.png"))
-        self.studentPictureLabel = QLabel(self.centralwidget)
-        self.studentPictureLabel.setObjectName(u"studentPictureLabel")
-        self.studentPictureLabel.setGeometry(QRect(20, 120, 221, 231))
-        self.studentPictureLabel.setPixmap(QPixmap(u":/png/student.png"))
         self.teacherPictureLabel = QLabel(self.centralwidget)
         self.teacherPictureLabel.setObjectName(u"teacherPictureLabel")
-        self.teacherPictureLabel.setGeometry(QRect(230, 330, 221, 231))
+        self.teacherPictureLabel.setGeometry(QRect(50, 150, 221, 231))
         self.teacherPictureLabel.setPixmap(QPixmap(u":/png/Teacher.png"))
+        self.studentPictureLabel = QLabel(self.centralwidget)
+        self.studentPictureLabel.setObjectName(u"studentPictureLabel")
+        self.studentPictureLabel.setGeometry(QRect(260, 330, 221, 231))
+        self.studentPictureLabel.setPixmap(QPixmap(u":/png/student.png"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 33))
+        self.menubar.setGeometry(QRect(0, 0, 800, 21))
         self.menubar.setStyleSheet(u"background-color: rgb(0, 33, 72);\n"
 "color: rgb(255, 255, 255);")
         self.menuTiedosto = QMenu(self.menubar)
@@ -134,8 +146,8 @@ class Ui_MainWindow(object):
         self.lastNameLabel.setText(QCoreApplication.translate("MainWindow", u"Sukunimi", None))
         self.savePushButton.setText(QCoreApplication.translate("MainWindow", u"Tallenna", None))
         self.keyPictureLabel.setText("")
-        self.studentPictureLabel.setText("")
         self.teacherPictureLabel.setText("")
+        self.studentPictureLabel.setText("")
         self.menuTiedosto.setTitle(QCoreApplication.translate("MainWindow", u"Tiedosto", None))
         self.menuEdelliset.setTitle(QCoreApplication.translate("MainWindow", u"Edelliset", None))
     # retranslateUi
