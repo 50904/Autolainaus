@@ -2,7 +2,7 @@
 # =================================
 
 import pytest # Järjestelmätason virheiden testaus
-import cipher # Testattavan moduulin lataus
+import uiPictures.modules.cipher as cipher # Testattavan moduulin lataus
 
 plainText = b'Selkokielitesti'
 key = b'XX1jpDo7aQeDExbSlFGoSDCpSv2OMPDcGrU9YYNLx9Q='

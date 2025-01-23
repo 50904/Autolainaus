@@ -11,7 +11,7 @@ import psycopg2
 import json
 
 # Omat moduulit
-import cipher
+import uiPictures.modules.cipher as cipher
 
 # LUOKAT
 # ------

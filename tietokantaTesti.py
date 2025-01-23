@@ -7,7 +7,7 @@
 import os # Polkumääritykset
 import sys # Käynnistysargumentit
 
-import dbOperations
+import uiPictures.modules.dbOperations as dbOperations
 
 from PySide6 import QtWidgets # Qt-vimpaimet
 from tietokantaTesti_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
@@ -48,7 +48,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                       'userName': 'postgres',
                       'password': 'Q2werty'}
 
-        
+        # Piilotetaan kuvat ja syöttökentät sovelluksen kännistyksestä
+        self.ui.teacherPictureLabel.hide()
+        self.ui.keyPictureLabel.hide()
+        self.ui.ssnLineEdit.hide()
+        self.ui.keyBarcodeLineEdit.hide()
+        self.ui.dateLabel.hide()
+        self.ui.hourLCDnumber.hide()
+        self.ui.minuteLCDnumber.hide()
+
+
+
     # OHJELMOIDUT SLOTIT
     # ------------------
 
@@ -69,14 +79,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.keyPictureLabel.show()
         self.ui.ssnLineEdit.show()
         self.ui.returnCarPushButton.hide() # Piilotetaan Palauta-painike
+        self.ui.ssnLineEdit.setFocus()
 
         # Näytetään tilarivillä Ohjeteksti
-        message = 'Lue ajokortin viivakoodi ensin ja sen jälkeen avaimen viivakoodi'
+        message = 'Lue ajokortin viivakoodi'
         self.ui.statusbar.showMessage(message)
 
     def showKeyLineEdit(self):
         self.ui.keyBarcodeLineEdit.show()
         self.ui.keyBarcodeLineEdit.setFocus()
+        message = 'Lue ajokortin viivakoodi ensin ja sen jälkeen avaimen viivakoodi'
+        self.ui.statusbar.showMessage(message)
+
+
 
 
     # Avataan MessageBox
