@@ -10,7 +10,7 @@ import sys # Käynnistysargumentit
 import json # JSON-objektien ja tiedostojen käsittely
 
 # Asennuksen vaativat kirjastot
-import uiPictures.modules.dbOperations as dbOperations # PostgreSQL-tietokantayhteydet
+import uiPictures.lendingModules.dbOperations as dbOperations # PostgreSQL-tietokantayhteydet
 from PySide6 import QtWidgets # Qt-vimpaimet
 
 
@@ -20,7 +20,10 @@ from settingsDialog_ui import Ui_Dialog as Settings_Dialog# Asetukset-dialogin l
 from aboutDialog_ui import Ui_Dialog as About_Dialog
 
 # Omat moduulit
-import uiPictures.modules.cipher as cipher
+from lendingModules import dbOperations  # Salakirjoitusmoduuli
+from lendingModules import cipher 
+from lendingModules import barcode
+from lendingModules import identitycheck2 
 
 # LUOKKAMÄÄRITYKSET
 # -----------------

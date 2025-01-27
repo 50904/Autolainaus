@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="png">
-    <file>LainaaNappi.png</file>
-    <file>autolainausauto.png</file>
-    <file>Teacher.png</file>
-    <file>Keys.png</file>
-    <file>student.png</file>
-  </qresource>
-</RCC>

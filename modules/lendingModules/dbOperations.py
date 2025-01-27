@@ -1,3 +1,6 @@
+"""
+A module to connect to a PostgreSQL database and do basic CRUD-operations (Create, Read, Update and Delete)
+"""
 # MODUULI POSTGRESQL TIETOKANTAPALVELIMEN KÄYTTÄMISEEN
 # ====================================================
 
@@ -10,8 +13,7 @@ import psycopg2
 # Sisäiset kirjastot
 import json
 
-# Omat moduulit
-import uiPictures.modules.cipher as cipher
+
 
 # LUOKAT
 # ------

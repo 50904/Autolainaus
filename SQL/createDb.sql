@@ -1,4 +1,4 @@
-
+-- Luo autolainaustietokannan taulut ja laskurit
 CREATE TABLE public.auto (
                 rekisterinumero VARCHAR(7) NOT NULL,
                 merkki VARCHAR(30) NOT NULL,
@@ -15,8 +15,8 @@ CREATE TABLE public.ryhma (
                 CONSTRAINT ryhma_pk PRIMARY KEY (ryhma)
 );
 COMMENT ON TABLE public.ryhma IS 'Opikelijan luokka';
-COMMENT ON COLUMN public.ryhma.ryhma IS 'Ryhm‰n nimi, esim. auto22B tai henkilˆkunta';
-COMMENT ON COLUMN public.ryhma.vastuuhenkilo IS 'Vastuuopettaja tai l‰hiesimies';
+COMMENT ON COLUMN public.ryhma.ryhma IS 'Ryhm√§n nimi, esim. auto22B tai henkil√∂kunta';
+COMMENT ON COLUMN public.ryhma.vastuuhenkilo IS 'Vastuuopettaja tai l√§hiesimies';
 
 
 CREATE TABLE public.lainaaja (
@@ -30,9 +30,9 @@ CREATE TABLE public.lainaaja (
 );
 COMMENT ON TABLE public.lainaaja IS 'Lainaajan (opiskelija tai ope)
 perustiedot';
-COMMENT ON COLUMN public.lainaaja.hetu IS 'Kansallinen henkilˆtunnus';
-COMMENT ON COLUMN public.lainaaja.sahkoposti IS 'Rasekon s‰hkˆpostiosoite';
-COMMENT ON COLUMN public.lainaaja.ryhma IS 'Ryhm‰n nimi, esim. auto22B tai henkilˆkunta';
+COMMENT ON COLUMN public.lainaaja.hetu IS 'Kansallinen henkil√∂tunnus';
+COMMENT ON COLUMN public.lainaaja.sahkoposti IS 'Rasekon s√§hk√§postiosoite';
+COMMENT ON COLUMN public.lainaaja.ryhma IS 'Ryhm√§n nimi, esim. auto22B tai henkil√∂kunta';
 COMMENT ON COLUMN public.lainaaja.ajokorttiluokka IS 'Esim AB TAI ABCE';
 
 
@@ -48,9 +48,9 @@ CREATE TABLE public.lainaus (
 );
 COMMENT ON TABLE public.lainaus IS 'Lainaustapahtuman tiedot';
 COMMENT ON COLUMN public.lainaus.lainausnumero IS 'Lainustapahtumalle automaattisesti annettava juokseva numero';
-COMMENT ON COLUMN public.lainaus.hetu IS 'Kansallinen henkilˆtunnus';
-COMMENT ON COLUMN public.lainaus.lainausaika IS 'P‰iv‰m‰‰r‰ ja kellonaika, kun auto on otettu lainaana';
-COMMENT ON COLUMN public.lainaus.palautus IS 'Palautuksen p‰iv‰ ja kellonaika';
+COMMENT ON COLUMN public.lainaus.hetu IS 'Kansallinen henkil√∂tunnus';
+COMMENT ON COLUMN public.lainaus.lainausaika IS 'P√§iv√§m√§√§r√§ ja kellonaika, kun auto on otettu lainaana';
+COMMENT ON COLUMN public.lainaus.palautus IS 'Palautuksen p√§iv√§ ja kellonaika';
 
 
 ALTER SEQUENCE public.lainaus_lainausnumero_seq OWNED BY public.lainaus.lainausnumero;

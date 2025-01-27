@@ -2,7 +2,7 @@
 # ============================
 
 import pytest # Virheilmoitusten testaus vaatii
-import uiPictures.modules.dbOperations as dbOperations # Testattava moduuli
+import uiPictures.lendingModules.dbOperations as dbOperations # Testattava moduuli
 
 settingsDictionary = {'server': 'localhost', 
                       'port': '5433',
