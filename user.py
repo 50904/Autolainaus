@@ -6,8 +6,13 @@
 # ----------------------------------
 import os # Polkumääritykset
 import sys # Käynnistysargumentit
+import json # Json-tiedostojen käsittely
 
 from PySide6 import QtWidgets # Qt-vimpaimet
+
+from lendingModules import sound # Äänitoiminnot
+from lendingModules import dbOperations # Tietokantatoiminnot
+from lendingModules import cipher # Salausmoduuli
 
 # Tuodaan käyttöliittymään Pythoniksi käännetty tiedosto 
 # Korvaa mainwindow_ui todellisella tiedoston nimellä
@@ -28,6 +33,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Kutsutaan käyttöliittymän muodostusmetodia setupUi
         self.ui.setupUi(self)
+
+                # Rutiini, joka lukee asetukset, jos ne ovat olemassa
+        try:
+            # Avataam asetustiedosto ja muutetaan se Python sanakirjaksi
+            with open('settings.json', 'rt') as settingsFile: # With sulkee tiedoston automaattisesti
+                
+                jsonData = settingsFile.read()
+                self.currentSettings = json.loads(jsonData)
+            
+            # Puretaan salasana tietokantaoperaatioita varten  
+            self.plainTextPassword = cipher.decryptString(self.currentSettings['password'])
+        except Exception as error:
+            self.openWarning()
 
         # Äänet oletuksena käytössä
         self.soundOnPictureLabel = True
@@ -102,6 +120,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.borrowCarPushButton.hide()
         self.ui.statusLabel.show()
         self.ui.statusbar.showMessage('Syötä ajokortti koneeseen')
+        if self.soundOn:
+            sound.playWAV('Sounds\\drivingLicence.WAV')
 
 
     # Näyttää avaimen kuvakkeen, rekisterikenttä ja lainaajan tiedot
@@ -121,8 +141,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Tallennetaan lainauksen tiedot ja palautetaan käyttöliittymä alkutilaan
     def saveLendingData(self):
         # Save data to the database
+        ssn = self.ui.ssnLineEdit.text()
+        key = self.ui.keyBarcodeLineEdit.text()
+        dbOperations.DbConnection()
         self.setInitialElements()
         self.ui.statusbar.showMessage('Auton lainaustiedot tallennettiin', 5000)
+        
     
     # Näytetään palautukseen liittyvät kentät ja kuvat 
     def activateReturnCar(self):
@@ -132,6 +156,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.keyReturnBarcodeLineEdit.show()
         self.ui.keyReturnBarcodeLineEdit.setFocus()
         self.ui.statusbar.showMessage('Lue avaimen viivakoodi')
+        if self.soundOn:
+            sound.playWav('sounds\\lendingOK.Wav')
+
+    # TODO: Laita seuraava lohko virheenkäsittelyn sisälle
+    # Luodaan tietokantayhteys olioon
 
     # Tallennetaan palautuksen tiedot tietokantaan ja palautetaan UI alkutila
     def saveReturnData(self):
@@ -161,8 +190,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def openWarning(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-        msgBox.setWindowTitle('Hirveetä!')
-        msgBox.setText('Jotain kamalaa tapahtui')
+        msgBox.setWindowTitle('Tietokantayhteyttä ei voitu muodostaa')
+        msgBox.setText('Ota yhteyttä järjestelmän valvojaan')
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
 
