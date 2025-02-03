@@ -11,7 +11,7 @@ from PySide6 import QtWidgets # Qt-vimpaimet
 
 # Tuodaan käyttöliittymään Pythoniksi käännetty tiedosto 
 # Korvaa mainwindow_ui todellisella tiedoston nimellä
-from tietokantaTesti_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
+from mainWindow_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
 
 # Määritellään luokka joka perii QMainWindow- ja Ui_
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
