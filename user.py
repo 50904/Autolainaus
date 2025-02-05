@@ -227,5 +227,3 @@ window.show()
 
 # Käynnistetään sovellus ja tapahtumienkäsittelijä (event loop)
 app.exec()
-
-    

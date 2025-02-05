@@ -8,10 +8,10 @@ import os # Polkumääritykset
 import sys # Käynnistysargumentit
 
 from PySide6 import QtWidgets # Qt-vimpaimet
+from PySide6.QtCore import QThreadPool, Slot # Säikeistys ja Slot-dekoraattori
+from threadedSound_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
 
-# mainWindow_ui:n tilalle käännetyn pääikkunan tiedoston nimi
-# ilman .py-tiedostopäätettä
-from mainWindow_ui import Ui_MainWindow # Käännetyn käyttöliittymän luokka
+from lendingModules import sound # Äänipalaute
 
 # Määritellään luokka, joka perii QMainWindow- ja Ui_MainWindow-luokan
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -20,6 +20,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Määritellään olionmuodostin ja kutsutaan yliluokkien muodostimia
     def __init__(self):
         super().__init__()
+
+        # Luodaan säievaranto (thread pool)
+        self.threadPool = QThreadPool()
 
         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
@@ -30,8 +33,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
         
-        # Kun Tulosta-painiketta on klikattu, kutsutaan updatePrintedLabel-metodia
-        self.ui.tulostaPushButton.clicked.connect(self.updatePrintedLabel)
+        # Kun Lainaaja-kentästä poistutaan soitetaan äänitiedosto readKey.WAV
+        self.ui.lenderLineEdit.returnPressed.connect(self.playWavFileThread)
 
         
    
@@ -39,10 +42,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # OHJELMOIDUT SLOTIT
     # ------------------
 
-    # Muutetaan tulostettuLabel:n sisältö: teksti ja väri
-    def updatePrintedLabel(self):
-        self.ui.tulostettuLabel.setText('Tulostettu')
-        self.ui.tulostettuLabel.setStyleSheet(u"color: rgb(0, 255, 0);")
+
+    # Soitetaan äänitiedosto, huom! @Slot() dekoraattori
+    # Äänelle luodaan oma slot dekoraattoria käyttäen, jotta säikeistys
+    # onnistuu. Jos yritetään kutsua suoraan sound.playWav-metodia, sen suoritus
+    # jäädyttää käyttöliittumän. Tästä syystä on tehty erillinen slot, jota ei kutsuta
+    # suoraan vaan playWavFileThread slotin kautta.
+
+    @Slot()
+    def playWavFile(self):
+        sound.playWav('sounds\\readKey.WAV')
+
+    # Luodaan säie, joka suorittaa äänitiedoston soittamisen   
+    @Slot()
+    def playWavFileThread(self):
+        self.ui.carLineEdit.setFocus()
+        self.threadPool.start(self.playWavFile)
 
     # Avataan MessageBox
     def openWarning(self):
@@ -63,5 +78,3 @@ window.show()
 
 # Käynnistetään sovellus ja tapahtumienkäsittelijä
 app.exec()
-
-    
