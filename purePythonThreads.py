@@ -49,16 +49,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # jäädyttää käyttöliittumän. Tästä syystä on tehty erillinen slot, jota ei kutsuta
     # suoraan vaan playWavFileThread slotin kautta.
 
-    # Työfunktio, joka halutaan suorittaa säikeenä
     @Slot()
     def playWavFile(self):
-        sound.playWav('sounds\\readKey.WAV')
+        sound.playWav('sounds\\readKey.wav')
 
-    # Luodaan uusi säie, joka kutsuu työfunktiota
+    # Luodaan säie, joka suorittaa äänitiedoston soittamisen   
     @Slot()
     def playWavFileThread(self):
         self.ui.carLineEdit.setFocus()
         self.threadPool.start(self.playWavFile)
+
+    # Avataan MessageBox
+    def openWarning(self):
+        msgBox = QtWidgets.QMessageBox()
+        msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+        msgBox.setWindowTitle('Hirveetä!')
+        msgBox.setText('Jotain kamalaa tapahtui')
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgBox.exec()
+
 
 # Luodaan sovellus
 app = QtWidgets.QApplication(sys.argv)
@@ -69,3 +78,5 @@ window.show()
 
 # Käynnistetään sovellus ja tapahtumienkäsittelijä
 app.exec()
+
+    

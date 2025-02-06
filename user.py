@@ -128,6 +128,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Näyttää avaimen kuvakkeen, rekisterikenttä ja lainaajan tiedot
     def activateKey(self):
+        self.ui.ssnLineEdit.hide()
         self.ui.keyPictureLabel.show()
         self.ui.keyBarcodeLineEdit.show()
         self.ui.keyBarcodeLineEdit.setFocus()
@@ -156,20 +157,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
 
-        # TODO: Laita seuraava lohko virheenkäsittelyn sisälle
-        # Luodaan tietokantayhteys-olio
-        dbConnection = dbOperations.DbConnection(dbSettings)
-        ssn = self.ui.ssnLineEdit.text()
-        key = self.ui.keyBarcodeLineEdit.text()
-        dataDictionary = {'hetu': ssn,
-                          'rekisterinumero': key}
-        dbConnection.addToTable('lainaus', dataDictionary)
+        try:
+            # TODO: Laita seuraava lohko virheenkäsittelyn sisälle
+            # Luodaan tietokantayhteys-olio
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            ssn = self.ui.ssnLineEdit.text()
+            key = self.ui.keyBarcodeLineEdit.text()
+            dataDictionary = {'hetu': ssn,
+                            'rekisterinumero': key}
+            dbConnection.addToTable('lainaus', dataDictionary)
 
-        self.setInitialElements()
-        self.ui.statusbar.showMessage('Auton lainaustiedot tallennettiin', 5000)
-        if self.soundOn:
-            sound.playWav('sounds\\lendingOk.WAV')
-
+            self.setInitialElements()
+            self.ui.statusbar.showMessage('Auton lainaustiedot tallennettiin', 5000)
+            if self.soundOn:
+                sound.playWav('sounds\\lendingOk.WAV')
+        except Exception as e:
+            title = 'Lainaustietojen tallentaminen ei onnistu'
+            text = 'Ajokortti tai auton tiedot virheelliset, ota yhteys henkilökuntaan!'
+            detailedText = str(e)
+            self.openWarning(title, text, detailedText )
+        
     # Näytetään palautukseen liittyvät kentät ja kuvat
     def activateReturnCar(self):
         self.ui.takeCarPushButton.hide()
@@ -208,14 +215,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.statusbar.showMessage('Toiminto peruutettiin', 5000)
         
     # Avataan MessageBox
-    def openWarning(self):
+      # Malli mahdollista virheilmoitusta varten
+    def openWarning(self, title: str, text:str, detailedText:str) -> None: 
+        """Opens a message box for errors
+
+        Args:
+            title (str): The title of the message box
+            text (str): Error message
+            detailedText (str): Detailed error message typically from source
+        """
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-        msgBox.setWindowTitle('Tietokantayhteyttä ei voitu muodostaa')
-        msgBox.setText('Ota yhteyttä järjestelmän valvojaan')
+        msgBox.setWindowTitle(title)
+        msgBox.setText(text)
+        msgBox.setDetailedText(detailedText)
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
-
 
 # LUODAAN VARSINAINEN SOVELLUS
 # ============================
