@@ -9,6 +9,7 @@ import sys # Käynnistysargumentit
 import json # JSON-tiedostojen käsittely
 
 from PySide6 import QtWidgets # Qt-vimpaimet
+from PySide6.QtCore import QThreadPool, Slot # Säikeistys ja Slot-dekoraattori
 
 from lendingModules import sound # Äänitoiminnot
 from lendingModules import dbOperations # Tietokantatoiminnot
@@ -25,6 +26,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Määritellään olionmuodostin ja kutsutaan yliluokkien muodostimia
     def __init__(self):
         super().__init__()
+
+        # Luodaan säikeistystä varten uusi säievaranto
+        self.threadPool = QThreadPool()
 
         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
@@ -87,6 +91,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     # OHJELMOIDUT SLOTIT
     # ------------------
+    
+    # Soita parametrina annettu äänitiedosto (työfunktio)
+    @Slot(str)
+    def playSoundFile(self, soundFileName):
+        fileAndPath = 'sounds\\' + soundFileName
+        sound.playWav(fileAndPath)
+
+    @Slot(str)
+    def playSoundInTread(self, soundFileName):
+        self.threadPool.start(self.playSoundFile(soundFileName))
 
     # Palauta käyttöliittymä alkutilanteeseen
     def setInitialElements(self):
@@ -123,8 +137,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.statusLabel.show()
         self.ui.statusbar.showMessage('Syötä ajokortti koneeseen')
         if self.soundOn:
-            sound.playWav('sounds\\drivingLicence.WAV')
-        
+           self.playSoundInTread('drivingLicence.wav')
 
     # Näyttää avaimen kuvakkeen, rekisterikenttä ja lainaajan tiedot
     def activateKey(self):
