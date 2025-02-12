@@ -182,7 +182,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         tableData = dbConnection.readAllColumnsFromTable('auto')
         print('Auto-taulun tiedot:', tableData)
 
-        # Määritellään taulukkoelementin ostsikot
+        # Määritellään taulukkoelementin otsikot
         headerRow = ['Rekisteri', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä']
         self.ui.vechicleCatalogTableWidget.setHorizontalHeaderLabels(headerRow)
 

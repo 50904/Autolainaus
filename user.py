@@ -28,7 +28,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
 
         # Luodaan säikeistystä varten uusi säievaranto
-        self.threadPool = QThreadPool()
+        self.threadPool = QThreadPool().globalInstance()
 
         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
@@ -46,9 +46,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
             # Puretaan salasana tietokantaoperaatioita varten  
             self.plainTextPassword = cipher.decryptString(self.currentSettings['password'])
-        
+
+        # Jos asetusten luku ei onnistu, näytetään virhedialogi 
         except Exception as error:
-            self.openWarning()
+            title = 'Tietokanta-asetusten luku ei onnistunut'
+            text = 'Tietokanta-asetuksien avaaminen ja salasanan purku ei onnistunut'
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
 
 
         # Äänet oletuksena käytössä
@@ -97,10 +101,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def playSoundFile(self, soundFileName):
         fileAndPath = 'sounds\\' + soundFileName
         sound.playWav(fileAndPath)
-
+    
+    # Säikeen käynnistävä funktio 
     @Slot(str)
     def playSoundInTread(self, soundFileName):
-        self.threadPool.start(self.playSoundFile(soundFileName))
+        self.threadPool.start(lambda: self.playSoundFile(soundFileName))
 
     # Palauta käyttöliittymä alkutilanteeseen
     def setInitialElements(self):
@@ -124,6 +129,43 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.timeLabel.hide()
         self.ui.lenderNameLabel.hide()
         self.ui.carInfoLabel.hide()
+
+    
+        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+
+        try:
+            # Luodaan tietokantayhteys-olio
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            freeVechiles = dbConnection.readAllColumnsFromTable('vapaana')
+            print(freeVechiles)
+            
+
+            # Määritellään vapaana olevien autojen tiedot
+            # availablePlainTextEdit-elementtiin
+            availableVechilesData = ''
+
+            text = ''
+
+            for vechileTuple in freeVechiles:
+                rowData = ''
+                for vechileData in vechileTuple:
+                    rowData = rowData + f'{vechileData} '
+                text = rowData + 'henkilöä\n'
+                availableVechilesData = availableVechilesData + text
+
+            self.ui.availablePlainTextEdit.setPlainText(availableVechilesData)
+
+           
+        except Exception as e:
+            title = 'Autotietojen lukeminen ei onnistunut'
+            text = 'Vapaiden autojen tiedot eivät ole saatavissa'
+            detailedText = str(e)
+            self.openWarning(title, text, detailedText)      
+
+        # TODO: Lisää rutiini, joka hakee ajossa olevat autot
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     def activateLender(self):
