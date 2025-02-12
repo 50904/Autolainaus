@@ -6,15 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>754</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="emblem-shared"/>
+   <iconset theme="emblem-shared">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(223, 32, 112);</string>
@@ -43,9 +44,6 @@ color: rgb(32, 75, 70);</string>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
     <property name="placeholderText">
      <string>Lue ajokortti</string>
@@ -77,9 +75,6 @@ color: rgb(32, 75, 70);</string>
     <property name="text">
      <string/>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
     <property name="placeholderText">
      <string>Lue avain</string>
     </property>
@@ -99,6 +94,7 @@ color: rgb(32, 75, 70);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -119,7 +115,7 @@ background-color: rgb(140, 51, 85);</string>
      <string>LAINAA</string>
     </property>
     <property name="icon">
-     <iconset resource="userUiRescources.qrc">
+     <iconset>
       <normaloff>:/pictures/uiPictures/ota.png</normaloff>:/pictures/uiPictures/ota.png</iconset>
     </property>
     <property name="iconSize">
@@ -145,7 +141,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/keys.png</pixmap>
+     <pixmap>:/pictures/uiPictures/keys.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -170,7 +166,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/Teacher.png</pixmap>
+     <pixmap>:/pictures/uiPictures/Teacher.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -182,8 +178,8 @@ background-color: rgb(140, 51, 85);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>400</y>
+      <x>60</x>
+      <y>450</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -194,7 +190,7 @@ background-color: rgb(140, 51, 85);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:  rgb(0, 33, 72);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>15.3.2024</string>
@@ -212,6 +208,7 @@ background-color: rgb(140, 51, 85);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -232,7 +229,7 @@ background-color: rgb(140, 51, 85);</string>
      <string>PALAUTA</string>
     </property>
     <property name="icon">
-     <iconset resource="userUiRescources.qrc">
+     <iconset>
       <normaloff>:/pictures/uiPictures/palauta.drawio.png</normaloff>:/pictures/uiPictures/palauta.drawio.png</iconset>
     </property>
     <property name="iconSize">
@@ -245,8 +242,8 @@ background-color: rgb(140, 51, 85);</string>
    <widget class="QLabel" name="calendarLabel">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>400</y>
+      <x>20</x>
+      <y>440</y>
       <width>31</width>
       <height>51</height>
      </rect>
@@ -255,7 +252,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/calendar.png</pixmap>
+     <pixmap>:/pictures/uiPictures/calendar.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -267,8 +264,8 @@ background-color: rgb(140, 51, 85);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>400</y>
+      <x>430</x>
+      <y>450</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -279,7 +276,8 @@ background-color: rgb(140, 51, 85);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:  rgb(0, 33, 72);</string>
+     <string notr="true">
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>10.05</string>
@@ -289,7 +287,7 @@ background-color: rgb(140, 51, 85);</string>
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>400</y>
+      <y>450</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -298,7 +296,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/clock.png</pixmap>
+     <pixmap>:/pictures/uiPictures/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -316,8 +314,12 @@ background-color: rgb(140, 51, 85);</string>
     <property name="font">
      <font>
       <pointsize>14</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(140, 51, 85);
@@ -327,7 +329,7 @@ color: rgb(255, 255, 255);</string>
      <string>KUMOA</string>
     </property>
     <property name="icon">
-     <iconset resource="userUiRescources.qrc">
+     <iconset>
       <normaloff>:/pictures/uiPictures/back.png</normaloff>:/pictures/uiPictures/back.png</iconset>
     </property>
     <property name="iconSize">
@@ -356,7 +358,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="userUiRescources.qrc">
+     <iconset>
       <normaloff>:/pictures/uiPictures/soundOn.png</normaloff>:/pictures/uiPictures/soundOn.png</iconset>
     </property>
     <property name="iconSize">
@@ -375,6 +377,9 @@ color: rgb(255, 255, 255);</string>
       <height>101</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Vaimentaa äänet&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
@@ -385,7 +390,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="userUiRescources.qrc">
+     <iconset>
       <normaloff>:/pictures/uiPictures/soundOff.png</normaloff>:/pictures/uiPictures/soundOff.png</iconset>
     </property>
     <property name="iconSize">
@@ -398,8 +403,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="statusLabel">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>10</y>
+      <x>60</x>
+      <y>0</y>
       <width>441</width>
       <height>91</height>
      </rect>
@@ -407,6 +412,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>36</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -416,17 +422,14 @@ color: rgb(255, 255, 255);</string>
     <property name="text">
      <string>Tila</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
    </widget>
    <widget class="QLabel" name="lenderNameLabel">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>360</y>
+      <x>60</x>
+      <y>370</y>
       <width>181</width>
-      <height>31</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -434,20 +437,20 @@ color: rgb(255, 255, 255);</string>
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>Lainaajan nimi</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="carInfoLabel">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>360</y>
+      <x>370</x>
+      <y>370</y>
       <width>181</width>
-      <height>31</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -455,11 +458,11 @@ color: rgb(255, 255, 255);</string>
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>Merkki ja malli</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="okPushButton">
@@ -474,8 +477,12 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>24</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa tiedot ajopäiväkirjaan&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -517,9 +524,6 @@ color: rgb(255, 255, 255);</string>
     <property name="text">
      <string/>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
     <property name="placeholderText">
      <string>Lue avain</string>
     </property>
@@ -533,8 +537,8 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>754</width>
-     <height>33</height>
+     <width>1920</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -575,7 +579,8 @@ color: rgb(255, 255, 255);</string>
   </widget>
   <action name="actionLopeta">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Lopeta</string>
