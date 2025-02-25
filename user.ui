@@ -14,7 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="emblem-shared"/>
+   <iconset theme="emblem-shared">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(223, 32, 112);</string>
@@ -26,7 +27,7 @@
    </size>
   </property>
   <property name="toolButtonStyle">
-   <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
+   <enum>Qt::ToolButtonIconOnly</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="ssnLineEdit">
@@ -102,6 +103,7 @@ color: rgb(32, 75, 70);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -215,6 +217,7 @@ background-color: rgb(140, 51, 85);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -320,6 +323,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>14</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -409,14 +413,15 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>550</y>
+      <y>0</y>
       <width>441</width>
-      <height>91</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>36</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -481,6 +486,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>24</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -544,7 +550,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::LayoutDirection::LeftToRight</enum>
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
      <string>Puheopastus</string>
@@ -561,6 +567,93 @@ color: rgb(255, 255, 255);</string>
      </size>
     </property>
    </widget>
+   <widget class="QLabel" name="vehiclePictureLabel">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>500</y>
+      <width>261</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="userUiRescources.qrc">:/pictures/FNK129-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>1011</width>
+      <height>641</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>63</y>
+       <width>201</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>21</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Vapaana</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>70</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>21</pointsize>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Ajossa</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>473</x>
+       <y>30</y>
+       <width>20</width>
+       <height>591</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -568,7 +661,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1920</width>
-     <height>33</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -609,7 +702,8 @@ color: rgb(255, 255, 255);</string>
   </widget>
   <action name="actionLopeta">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Lopeta</string>

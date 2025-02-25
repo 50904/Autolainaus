@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="pictures">
+    <file>XUX682-removebg-preview.png</file>
+    <file>OXZ915-removebg-preview.png</file>
+    <file>FPB343-removebg-preview.png</file>
+    <file>FNK129-removebg-preview.png</file>
     <file>docs/Keys.png</file>
     <file>docs/back.png</file>
     <file>docs/clock.png</file>

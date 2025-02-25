@@ -16,24 +16,36 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QLabel, QLineEdit,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QLabel,
+    QLineEdit, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QStatusBar, QWidget)
 import userUiRescources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1920, 1800)
-        icon = QIcon(QIcon.fromTheme(u"emblem-shared"))
+        MainWindow.resize(1920, 2470)
+        icon = QIcon()
+        iconThemeName = u"emblem-shared"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"background-color: rgb(223, 32, 112);")
         MainWindow.setIconSize(QSize(200, 200))
-        MainWindow.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
+        MainWindow.setToolButtonStyle(Qt.ToolButtonIconOnly)
         self.actionLopeta = QAction(MainWindow)
         self.actionLopeta.setObjectName(u"actionLopeta")
-        icon1 = QIcon(QIcon.fromTheme(u"application-exit"))
+        icon1 = QIcon()
+        iconThemeName = u"application-exit"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon1 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon1.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionLopeta.setIcon(icon1)
         self.actionKalle = QAction(MainWindow)
         self.actionKalle.setObjectName(u"actionKalle")
@@ -162,7 +174,7 @@ class Ui_MainWindow(object):
         self.soundOffPushButton.setIconSize(QSize(56, 56))
         self.statusLabel = QLabel(self.centralwidget)
         self.statusLabel.setObjectName(u"statusLabel")
-        self.statusLabel.setGeometry(QRect(70, 550, 441, 91))
+        self.statusLabel.setGeometry(QRect(70, 0, 441, 111))
         font4 = QFont()
         font4.setPointSize(36)
         font4.setBold(True)
@@ -201,7 +213,7 @@ class Ui_MainWindow(object):
         self.soundCheckBox = QCheckBox(self.centralwidget)
         self.soundCheckBox.setObjectName(u"soundCheckBox")
         self.soundCheckBox.setGeometry(QRect(560, 120, 161, 41))
-        self.soundCheckBox.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.soundCheckBox.setLayoutDirection(Qt.LeftToRight)
         icon7 = QIcon()
         iconThemeName = u"Puheopastus"
         if QIcon.hasThemeIcon(iconThemeName):
@@ -211,10 +223,36 @@ class Ui_MainWindow(object):
 
         self.soundCheckBox.setIcon(icon7)
         self.soundCheckBox.setIconSize(QSize(150, 150))
+        self.vehiclePictureLabel = QLabel(self.centralwidget)
+        self.vehiclePictureLabel.setObjectName(u"vehiclePictureLabel")
+        self.vehiclePictureLabel.setGeometry(QRect(290, 500, 261, 131))
+        self.vehiclePictureLabel.setPixmap(QPixmap(u":/pictures/FNK129-removebg-preview.png"))
+        self.vehiclePictureLabel.setScaledContents(True)
+        self.frame = QFrame(self.centralwidget)
+        self.frame.setObjectName(u"frame")
+        self.frame.setGeometry(QRect(50, 130, 1011, 641))
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(30, 63, 201, 61))
+        font7 = QFont()
+        font7.setPointSize(21)
+        self.label.setFont(font7)
+        self.label_2 = QLabel(self.frame)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(650, 70, 221, 51))
+        self.label_2.setFont(font7)
+        self.label_2.setLayoutDirection(Qt.LeftToRight)
+        self.line = QFrame(self.frame)
+        self.line.setObjectName(u"line")
+        self.line.setGeometry(QRect(473, 30, 20, 591))
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1920, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1920, 21))
         self.menubar.setStyleSheet(u"background-color: rgb(0, 33, 72);\n"
 "color: rgb(255, 255, 255);")
         self.menuTiedosto = QMenu(self.menubar)
@@ -224,9 +262,9 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
-        font7 = QFont()
-        font7.setPointSize(9)
-        self.statusbar.setFont(font7)
+        font8 = QFont()
+        font8.setPointSize(9)
+        self.statusbar.setFont(font8)
         self.statusbar.setToolTipDuration(-1)
         self.statusbar.setStyleSheet(u"background-color: rgb(243, 89, 148);")
         MainWindow.setStatusBar(self.statusbar)
@@ -293,6 +331,9 @@ class Ui_MainWindow(object):
         self.keyReturnBarcodeLineEdit.setText("")
         self.keyReturnBarcodeLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Lue avain", None))
         self.soundCheckBox.setText(QCoreApplication.translate("MainWindow", u"Puheopastus", None))
+        self.vehiclePictureLabel.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Vapaana", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Ajossa", None))
         self.menuTiedosto.setTitle(QCoreApplication.translate("MainWindow", u"Tiedosto", None))
         self.menuEdelliset.setTitle(QCoreApplication.translate("MainWindow", u"Edelliset", None))
     # retranslateUi
