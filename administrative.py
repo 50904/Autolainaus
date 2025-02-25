@@ -11,6 +11,7 @@ import json # JSON-objektien ja tiedostojen käsittely
 
 # Asennuksen vaativat kirjastot
 from PySide6 import QtWidgets # Qt-vimpaimet
+from PySide6 import QtGui 
 
 
 # Käyttöliittymämoduulien lataukset
@@ -82,6 +83,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.saveGroupPushButton.clicked.connect(self.saveGroup)
         self.ui.savePersonPushButton.clicked.connect(self.savePerson)
         self.ui.saveVehiclePushButton.clicked.connect(self.saveVehicle)
+        # TODO: Painike OpenPicturePushButton klikkaus kutsuu openPicture-dialogi
+        self.ui.openPicturePushButton.clicked.connect(self.openPicture)
         
 
         
@@ -117,16 +120,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateGroupsTableWidget() # Ryhmien tiedot
     # Välilehtien slotit
     # ------------------
-    # Ryhmän valinta -ruudun arvojen päivitys
+    
+    # Ryhmän valinta ja ajoneuvotyyppi ruutujen arvojen päivitys
     def updateCombos(self):
-
-
-        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
-        dbSettings = self.currentSettings
-        plainTextPassword = self.plainTextPassword
-        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
-
-        # Luodaan tietokantayhteys-olio
+           # Tehdään lista ajoneuvotyypit-yhdistelmäruudun arvoista
+         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
         # Tehdään lista ryhmät-yhdistelmäruudun arvoista
@@ -138,6 +136,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             groupStringList.append(stringValue)     
         self.ui.groupComboBox.clear()
         self.ui.groupComboBox.addItems(groupStringList)
+
+        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+
+        # Luodaan tietokantayhteys-olio
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Tehdään lista ryhmät-yhdistelmäruudun arvoista
+        typeList = dbConnection.readColumsFromTable('ajoneuvotyyppi',['tyyppi'])
+
+        typeStringList = []
+        for item in typeList:
+            stringValue = str (item[0])
+            typeStringList.append(stringValue)     
+
+        self.ui.vehicleTypeComboBox.clear()
+        self.ui.vehicleTypeComboBox.addItems(groupStringList)
+
+
 
     # Lainaajat-taulukon päivitys
     def updateLenderTableWidget(self):
@@ -183,7 +202,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print('Auto-taulun tiedot:', tableData)
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä']
+        headerRow = ['Rekisteri', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä', 'Tyyppi', 'Vastuuhenkilö']
         self.ui.vechicleCatalogTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -286,6 +305,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('Virheilmoitus', str(e))
             self.openWarning('Tallennus ei onnistunut', str(e)) 
 
+
+    # TODO: Ajoneuvon kuvan lataaminen
+    def openPicture(self):
+        userPath = os.path.expanduser('~')
+        pathToPictureFolder = userPath + '\\Pictures'
+        fileName, check = QtWidgets.QFileDialog.getOpenFileName(None, 'Valitse auton kuva', pathToPictureFolder, 'Kuvat (*.png, *.jpg)')
+        
+        # Jos kuvatiedosto on valittu
+        vehiclePicture = QtGui.QPixmap(fileName)
+        self.ui.vehiclePictureLabel.setPixmap(vehiclePicture)
+    
     # Ajoneuvon tallennus
     def saveVehicle(self):
         # Määritellään tietokanta-asetukset

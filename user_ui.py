@@ -16,9 +16,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
-    QMenu, QMenuBar, QPushButton, QSizePolicy,
-    QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QLabel, QLineEdit,
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QWidget)
 import userUiRescources_rc
 
 class Ui_MainWindow(object):
@@ -26,24 +26,14 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1920, 1800)
-        icon = QIcon()
-        iconThemeName = u"emblem-shared"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon = QIcon(QIcon.fromTheme(u"emblem-shared"))
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"background-color: rgb(223, 32, 112);")
+        MainWindow.setIconSize(QSize(200, 200))
+        MainWindow.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.actionLopeta = QAction(MainWindow)
         self.actionLopeta.setObjectName(u"actionLopeta")
-        icon1 = QIcon()
-        iconThemeName = u"application-exit"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon1 = QIcon.fromTheme(iconThemeName)
-        else:
-            icon1.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon1 = QIcon(QIcon.fromTheme(u"application-exit"))
         self.actionLopeta.setIcon(icon1)
         self.actionKalle = QAction(MainWindow)
         self.actionKalle.setObjectName(u"actionKalle")
@@ -92,20 +82,20 @@ class Ui_MainWindow(object):
         self.keyPictureLabel = QLabel(self.centralwidget)
         self.keyPictureLabel.setObjectName(u"keyPictureLabel")
         self.keyPictureLabel.setEnabled(True)
-        self.keyPictureLabel.setGeometry(QRect(330, 160, 201, 141))
-        self.keyPictureLabel.setPixmap(QPixmap(u":/pictures/uiPictures/keys.png"))
+        self.keyPictureLabel.setGeometry(QRect(350, 150, 191, 141))
+        self.keyPictureLabel.setPixmap(QPixmap(u":/pictures/docs/Keys.png"))
         self.keyPictureLabel.setScaledContents(True)
         self.lenderPictureLabel = QLabel(self.centralwidget)
         self.lenderPictureLabel.setObjectName(u"lenderPictureLabel")
         self.lenderPictureLabel.setEnabled(True)
         self.lenderPictureLabel.setGeometry(QRect(50, 100, 211, 231))
         self.lenderPictureLabel.setCursor(QCursor(Qt.CursorShape.IBeamCursor))
-        self.lenderPictureLabel.setPixmap(QPixmap(u":/pictures/uiPictures/Teacher.png"))
+        self.lenderPictureLabel.setPixmap(QPixmap(u":/pictures/docs/Teacher.png"))
         self.lenderPictureLabel.setScaledContents(False)
         self.dateLabel = QLabel(self.centralwidget)
         self.dateLabel.setObjectName(u"dateLabel")
         self.dateLabel.setEnabled(True)
-        self.dateLabel.setGeometry(QRect(60, 450, 191, 41))
+        self.dateLabel.setGeometry(QRect(60, 450, 271, 41))
         font2 = QFont()
         font2.setPointSize(32)
         self.dateLabel.setFont(font2)
@@ -125,7 +115,7 @@ class Ui_MainWindow(object):
         self.calendarLabel = QLabel(self.centralwidget)
         self.calendarLabel.setObjectName(u"calendarLabel")
         self.calendarLabel.setGeometry(QRect(20, 440, 31, 51))
-        self.calendarLabel.setPixmap(QPixmap(u":/pictures/uiPictures/calendar.png"))
+        self.calendarLabel.setPixmap(QPixmap(u":/pictures/docs/calendar.png"))
         self.calendarLabel.setScaledContents(True)
         self.timeLabel = QLabel(self.centralwidget)
         self.timeLabel.setObjectName(u"timeLabel")
@@ -137,7 +127,7 @@ class Ui_MainWindow(object):
         self.clockLabel = QLabel(self.centralwidget)
         self.clockLabel.setObjectName(u"clockLabel")
         self.clockLabel.setGeometry(QRect(370, 450, 41, 41))
-        self.clockLabel.setPixmap(QPixmap(u":/pictures/uiPictures/clock.png"))
+        self.clockLabel.setPixmap(QPixmap(u":/pictures/docs/clock.png"))
         self.clockLabel.setScaledContents(True)
         self.goBackPushButton = QPushButton(self.centralwidget)
         self.goBackPushButton.setObjectName(u"goBackPushButton")
@@ -172,7 +162,7 @@ class Ui_MainWindow(object):
         self.soundOffPushButton.setIconSize(QSize(56, 56))
         self.statusLabel = QLabel(self.centralwidget)
         self.statusLabel.setObjectName(u"statusLabel")
-        self.statusLabel.setGeometry(QRect(60, 0, 441, 91))
+        self.statusLabel.setGeometry(QRect(70, 550, 441, 91))
         font4 = QFont()
         font4.setPointSize(36)
         font4.setBold(True)
@@ -208,10 +198,23 @@ class Ui_MainWindow(object):
         self.keyReturnBarcodeLineEdit.setFont(font)
         self.keyReturnBarcodeLineEdit.setStyleSheet(u"background-color: rgb(255, 255, 127);")
         self.keyReturnBarcodeLineEdit.setClearButtonEnabled(True)
+        self.soundCheckBox = QCheckBox(self.centralwidget)
+        self.soundCheckBox.setObjectName(u"soundCheckBox")
+        self.soundCheckBox.setGeometry(QRect(560, 120, 161, 41))
+        self.soundCheckBox.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        icon7 = QIcon()
+        iconThemeName = u"Puheopastus"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon7 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon7.addFile(u"docs/soundon.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+
+        self.soundCheckBox.setIcon(icon7)
+        self.soundCheckBox.setIconSize(QSize(150, 150))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1920, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1920, 33))
         self.menubar.setStyleSheet(u"background-color: rgb(0, 33, 72);\n"
 "color: rgb(255, 255, 255);")
         self.menuTiedosto = QMenu(self.menubar)
@@ -263,13 +266,13 @@ class Ui_MainWindow(object):
         self.takeCarPushButton.setText(QCoreApplication.translate("MainWindow", u"LAINAA", None))
         self.keyPictureLabel.setText("")
         self.lenderPictureLabel.setText("")
-        self.dateLabel.setText(QCoreApplication.translate("MainWindow", u"15.3.2024", None))
+        self.dateLabel.setText("")
 #if QT_CONFIG(tooltip)
         self.returnCarPushButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">Tallentaa henkil\u00f6n tiedot tietokantaa</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.returnCarPushButton.setText(QCoreApplication.translate("MainWindow", u"PALAUTA", None))
         self.calendarLabel.setText("")
-        self.timeLabel.setText(QCoreApplication.translate("MainWindow", u"10.05", None))
+        self.timeLabel.setText("")
         self.clockLabel.setText("")
         self.goBackPushButton.setText(QCoreApplication.translate("MainWindow", u"KUMOA", None))
 #if QT_CONFIG(tooltip)
@@ -289,6 +292,7 @@ class Ui_MainWindow(object):
         self.okPushButton.setText(QCoreApplication.translate("MainWindow", u"OK", None))
         self.keyReturnBarcodeLineEdit.setText("")
         self.keyReturnBarcodeLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Lue avain", None))
+        self.soundCheckBox.setText(QCoreApplication.translate("MainWindow", u"Puheopastus", None))
         self.menuTiedosto.setTitle(QCoreApplication.translate("MainWindow", u"Tiedosto", None))
         self.menuEdelliset.setTitle(QCoreApplication.translate("MainWindow", u"Edelliset", None))
     # retranslateUi

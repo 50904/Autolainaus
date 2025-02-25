@@ -7,18 +7,26 @@
     <x>0</x>
     <y>0</y>
     <width>1920</width>
-    <height>1800</height>
+    <height>2470</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="emblem-shared">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="emblem-shared"/>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(223, 32, 112);</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>200</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="ssnLineEdit">
@@ -94,7 +102,6 @@ color: rgb(32, 75, 70);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -131,9 +138,9 @@ background-color: rgb(140, 51, 85);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>160</y>
-      <width>201</width>
+      <x>350</x>
+      <y>150</y>
+      <width>191</width>
       <height>141</height>
      </rect>
     </property>
@@ -141,7 +148,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/keys.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/docs/Keys.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -166,7 +173,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/Teacher.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/docs/Teacher.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -180,7 +187,7 @@ background-color: rgb(140, 51, 85);</string>
      <rect>
       <x>60</x>
       <y>450</y>
-      <width>191</width>
+      <width>271</width>
       <height>41</height>
      </rect>
     </property>
@@ -193,7 +200,7 @@ background-color: rgb(140, 51, 85);</string>
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>15.3.2024</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="returnCarPushButton">
@@ -208,7 +215,6 @@ background-color: rgb(140, 51, 85);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -252,7 +258,7 @@ background-color: rgb(140, 51, 85);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/calendar.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/docs/calendar.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -280,7 +286,7 @@ background-color: rgb(140, 51, 85);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>10.05</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="clockLabel">
@@ -296,7 +302,7 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/clock.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/docs/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -314,7 +320,6 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>14</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -403,8 +408,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="statusLabel">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>0</y>
+      <x>70</x>
+      <y>550</y>
       <width>441</width>
       <height>91</height>
      </rect>
@@ -412,7 +417,6 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>36</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -477,7 +481,6 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>24</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -531,6 +534,33 @@ color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QCheckBox" name="soundCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>120</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Puheopastus</string>
+    </property>
+    <property name="icon">
+     <iconset theme="Puheopastus">
+      <normalon>docs/soundon.png</normalon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>150</width>
+      <height>150</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -538,7 +568,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1920</width>
-     <height>21</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -579,8 +609,7 @@ color: rgb(255, 255, 255);</string>
   </widget>
   <action name="actionLopeta">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Lopeta</string>
