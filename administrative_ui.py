@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
     QMenu, QMenuBar, QPushButton, QSizePolicy,
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QWidget)
+import userUiRescources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -188,12 +189,20 @@ class Ui_MainWindow(object):
         self.openPicturePushButton.setObjectName(u"openPicturePushButton")
         self.openPicturePushButton.setGeometry(QRect(270, 100, 81, 61))
         self.openPicturePushButton.setStyleSheet(u"background-color: rgb(0, 170, 0);")
-        icon = QIcon(QIcon.fromTheme(u"camera-photo"))
+        icon = QIcon()
+        iconThemeName = u"camera-photo"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.openPicturePushButton.setIcon(icon)
         self.vehiclePictureLabel = QLabel(self.vechileTab)
         self.vehiclePictureLabel.setObjectName(u"vehiclePictureLabel")
         self.vehiclePictureLabel.setGeometry(QRect(420, 30, 291, 201))
-        self.vehiclePictureLabel.setFrameShape(QFrame.Shape.Box)
+        self.vehiclePictureLabel.setFrameShape(QFrame.NoFrame)
+        self.vehiclePictureLabel.setPixmap(QPixmap(u":/newPrefix/noPicturepng.png"))
+        self.vehiclePictureLabel.setScaledContents(True)
         self.vehicleTypeComboBox = QComboBox(self.vechileTab)
         self.vehicleTypeComboBox.setObjectName(u"vehicleTypeComboBox")
         self.vehicleTypeComboBox.setGeometry(QRect(110, 180, 141, 22))
@@ -296,7 +305,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 809, 33))
+        self.menubar.setGeometry(QRect(0, 0, 809, 21))
         self.menu = QMenu(self.menubar)
         self.menu.setObjectName(u"menu")
         MainWindow.setMenuBar(self.menubar)
@@ -343,7 +352,7 @@ class Ui_MainWindow(object):
         self.vehicleTypeLabel.setText(QCoreApplication.translate("MainWindow", u"Ajoneuvotyyppi", None))
         self.vehicleOwnerLabel.setText(QCoreApplication.translate("MainWindow", u"Vastuuhenkil\u00f6", None))
         self.openPicturePushButton.setText(QCoreApplication.translate("MainWindow", u"Kuva", None))
-        self.vehiclePictureLabel.setText(QCoreApplication.translate("MainWindow", u"Auton kuva", None))
+        self.vehiclePictureLabel.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.vechileTab), QCoreApplication.translate("MainWindow", u"Autot", None))
         self.groupNameLabel.setText(QCoreApplication.translate("MainWindow", u"Ryhm\u00e4n nimi", None))
         self.responsibleLabel.setText(QCoreApplication.translate("MainWindow", u"Vastuuhenkil\u00f6", None))

@@ -26,6 +26,7 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
      </font>
     </property>
@@ -51,6 +52,7 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -80,6 +82,7 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -109,6 +112,7 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -128,6 +132,7 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -232,6 +237,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -292,6 +298,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -311,6 +318,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -330,6 +338,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -349,6 +358,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -408,6 +418,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -437,6 +448,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -463,6 +475,7 @@ color: rgb(247, 247, 247);</string>
       <property name="font">
        <font>
         <pointsize>9</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -576,7 +589,8 @@ color: rgb(255, 255, 255);</string>
        <string>Kuva</string>
       </property>
       <property name="icon">
-       <iconset theme="camera-photo"/>
+       <iconset theme="camera-photo">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
      <widget class="QLabel" name="vehiclePictureLabel">
@@ -589,10 +603,16 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
-       <string>Auton kuva</string>
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="docs/userUiRescources.qrc">:/newPrefix/noPicturepng.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QComboBox" name="vehicleTypeComboBox">
@@ -607,6 +627,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -628,6 +649,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -647,6 +669,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -666,6 +689,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -682,6 +706,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>11</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -698,6 +723,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -749,6 +775,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -773,6 +800,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -822,6 +850,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -861,6 +890,7 @@ color: rgb(255, 255, 255);</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -900,6 +930,7 @@ color: rgb(249, 249, 249);</string>
       <property name="font">
        <font>
         <pointsize>8</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
@@ -960,7 +991,7 @@ color: rgb(249, 249, 249);</string>
      <x>0</x>
      <y>0</y>
      <width>809</width>
-     <height>33</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -990,6 +1021,8 @@ color: rgb(249, 249, 249);</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="docs/userUiRescources.qrc"/>
+ </resources>
  <connections/>
 </ui>

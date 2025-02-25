@@ -64,6 +64,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except Exception as e:
             self.openSettingsDialog()
 
+        self.vehiclePicture = 'uiPictures\\noPicture.png'
+
         # FIXME: Poista kaikki print-kommennot, kun koodi on muuten valmista!
         
 
@@ -125,7 +127,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def updateCombos(self):
            # Tehdään lista ajoneuvotyypit-yhdistelmäruudun arvoista
          # Luodaan tietokantayhteys-olio
-        dbConnection = dbOperations.DbConnection(dbSettings)
+        dbConnection = dbOperations.DbConnection(self.currentSettings)
 
         # Tehdään lista ryhmät-yhdistelmäruudun arvoista
         groupList = dbConnection.readColumsFromTable('ryhma',['ryhma'])
@@ -143,7 +145,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
 
         # Luodaan tietokantayhteys-olio
-        dbConnection = dbOperations.DbConnection(dbSettings)
+        dbConnection = dbOperations.DbConnection(self.currentSettings)
 
         # Tehdään lista ryhmät-yhdistelmäruudun arvoista
         typeList = dbConnection.readColumsFromTable('ajoneuvotyyppi',['tyyppi'])
@@ -160,7 +162,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Lainaajat-taulukon päivitys
     def updateLenderTableWidget(self):
-        pass
          # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
@@ -310,11 +311,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def openPicture(self):
         userPath = os.path.expanduser('~')
         pathToPictureFolder = userPath + '\\Pictures'
-        fileName, check = QtWidgets.QFileDialog.getOpenFileName(None, 'Valitse auton kuva', pathToPictureFolder, 'Kuvat (*.png, *.jpg)')
+        fileName, check = QtWidgets.QFileDialog.getOpenFileName(None, 'Valitse auton kuva', pathToPictureFolder, 'Kuvat (*.png *.jpg)')
         
         # Jos kuvatiedosto on valittu
-        vehiclePicture = QtGui.QPixmap(fileName)
-        self.ui.vehiclePictureLabel.setPixmap(vehiclePicture)
+        if fileName:
+            self.vehiclePicture = fileName
+
+
+        vehiclePixmap = QtGui.QPixmap(self.vehiclePicture)
+        self.ui.vehiclePictureLabel.setPixmap(vehiclePixmap)
     
     # Ajoneuvon tallennus
     def saveVehicle(self):
@@ -328,6 +333,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         model = self.ui.modelLineEdit.text()
         year = self.ui.modelYearLineEdit.text()
         capacity = int(self.ui.capacityLineEdit.text())
+        vehicleType = self.ui.vehicleTypeComboBox.currentText()
+        responsiblePerson = self.ui.vehicleOwnerLineEdit.text()
         # Määritellään tallennusmetodin vaatimat parametrit
         tableName = 'auto'
         
@@ -335,7 +342,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                           'merkki': manufacturer,
                           'malli': model,
                           'vuosimalli': year,
-                          'henkilomaara': capacity}
+                          'henkilomaara': capacity,
+                          'tyyppi': vehicleType,
+                          'vastuuhenkilö': responsiblePerson
+                          }
         
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
@@ -345,8 +355,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             dbConnection.addToTable(tableName, vehicleDictionary)
             self.updateVechileTableWidget()
         except Exception as e:
-            print('Virheilmoitus', str(e))
             self.openWarning('Tallennus ei onnistunut', str(e))
+
+        # Luetaan kuvatiedosto ja päivitetään auto-taulua
+        with open(self.vehiclePicture, 'rb') as pictureFile:
+            pictureData = pictureFile.read()
+
+        # Luodaan uusi yhteys, koska edellinen suljettiin
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        try:
+            dbConnection.updateBinaryField('auto', 'kuva', 'rekisterinumero', f"'{numberPlate}'", pictureData)
+        except Exception as e:
+             self.openWarning('Kuvan päivitys ei onnistunut', str(e))
 
     # Virheilmoitukset ja muut Message Box -dialogit
     # ----------------------------------------------
