@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>noPicturepng.png</file>
     <file>back.png</file>
     <file>clock.png</file>
     <file>calendar.png</file>

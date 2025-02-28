@@ -7,7 +7,7 @@
 # ---------------------
 
 # Ladattavat kirjastot
-import psycopg2 # PotgreSQL-ajuri
+import psycopg2 # PostgreSQL-ajuri
 import datetime
 
 # LUOKAT
@@ -225,13 +225,14 @@ class DbConnection():
 
     # Metodi, joka hakee tietokantapalvelimen aikaleiman
     def getPgTimestamp(self) -> str:
-        """Reads PostgreSQL server's current timestamp and convert it to ISO date and time string
+        """Reads PostgreSQL server's current timestamp and converts it to
+        ISO date and time string
 
         Raises:
-            e: An error message to propagate 
+            e: An error message to propagate
 
         Returns:
-            str: Date, time and timezone is ISO form
+            str: Date, time and timezone in ISO format
         """
 
         # Yritetään avata yhteys tietokantaan ja hakea tiedot
@@ -244,11 +245,14 @@ class DbConnection():
 
             # Määritellään SQL lause, joka palauttaa aikaleiman ja aikavyöhykkeen 
             sqlClause = f'SELECT CURRENT_TIMESTAMP;'
+
             # Suoritetaan SQL-lause ja luetaan tulokset kursorista
             cursor.execute(sqlClause)
             records= cursor.fetchall()
+            print(records)
             row = records[0] # Listasta monikko (tuple)
             column = row[0] # Monikosta arvo, joka tulee funktion tuottamana
+            print(column)
             isoDateTime = f'{column}' # Arvo merkkijonoksi muutettuna
             return isoDateTime
 
@@ -263,16 +267,15 @@ class DbConnection():
                 cursor.close() # Tuhotaan kursori
                 currentConnection.close() # Tuhotaan yhteys
 
-    # TODO: Tee metodi tietojen muokkaamiseen, yksittäinen sarake
     def modifyTableData(self, table: str, column: str, newValue, criteriaColumn: str, criteriaValue):
-        """Updates a column according to a filtering criteria
+        """Updataes a column according to a filtering criteria
 
         Args:
             table (str): Name of the table
             column (str): Name of the column to be updated
             newValue (any): The new value for the column
             criteriaColumn (str): A column to use in WHERE-claus
-            criteriaValue (any): The value of criteria column
+            criteriaValue (any): The value of criteria colunm
 
         Raises:
             e: Error message to be propagated
@@ -287,9 +290,8 @@ class DbConnection():
             cursor = currentConnection.cursor()
 
             # Määritellään lopullinen SQL-lause
-            sqlClause = f'UPDATE {table} SET {column} = {newValue} WHERE {criteriaColumn} = {criteriaValue}'
+            sqlClause = f'UPDATE {table} SET  {column} = {newValue} WHERE {criteriaColumn} = {criteriaValue}'
             print(sqlClause)
-            
             # Suoritetaan SQL-lause
             cursor.execute(sqlClause)
 
@@ -305,12 +307,72 @@ class DbConnection():
             if currentConnection:
                 cursor.close() # Tuhotaan kursori
                 currentConnection.close() # Tuhotaan yhteys
-                
-    # Tee metodi tietojen lukemiseen, taulun kaikki sarakkeet
 
-    # TODO: Tee metodi tietueen poistamiseen
-    def deleterRowsFromTable(self, table, criteriaColumn, criteriaValue):
-        pass
+    # Päivitetään taulun binäärisaraketta          
+    def updateBinaryField(self, table: str, column: str, criteriaColumn: str, criteriaValue, data):
+        """Updates a given bytea column in a table accordinto to a criteria
+
+        Args:
+            table (str): Name of the table to update
+            column (str): Name of the column to updata
+            criteriaColumn (str): Name of the column used to filter rows
+            criteriaValue: Value of the filtering criteria
+            data: Binary data to update with
+        """
+        # Yritetään avata yhteys tietokantaan ja päivittää tietueita
+        try:
+            # Luodaan yhteys tietokantaan
+            currentConnection = psycopg2.connect(self.connectionString)
+
+            # Luodaan kursori suorittamaan tietokantoperaatiota
+            cursor = currentConnection.cursor()
+
+            # Määritellään lopullinen SQL-lause
+            sqlClause = f'UPDATE {table} SET  {column} = %s WHERE {criteriaColumn} = {criteriaValue}'
+            print(sqlClause)
+            # Suoritetaan SQL-lause
+            cursor.execute(sqlClause, (data,))
+
+            # Vahvistetaan tapahtuma (transaction)
+            currentConnection.commit()
+
+        # Jos tapahtuu virhe, välitetään se luokkaa käyttävälle ohjelmalle
+        except (Exception, psycopg2.Error) as e:
+            raise e 
+        finally:
+
+            # Selvitetään muodostuiko yhteysolio
+            if currentConnection:
+                cursor.close() # Tuhotaan kursori
+                currentConnection.close() # Tuhotaan yhteys
+
+
+    def deleteRowsFromTable(self, table, criteriaColumn, criteriaValue):
+        try:
+            # Luodaan yhteys tietokantaan
+            currentConnection = psycopg2.connect(self.connectionString)
+
+            # Luodaan kursori suorittamaan tietokantoperaatiota
+            cursor = currentConnection.cursor()
+
+            # Määritellään lopullinen SQL-lause
+            sqlClause = f'DELETE FROM {table} WHERE {criteriaColumn} = {criteriaValue}'
+            print(sqlClause)
+            # Suoritetaan SQL-lause
+            cursor.execute(sqlClause)
+
+            # Vahvistetaan tapahtuma (transaction)
+            currentConnection.commit()
+
+        # Jos tapahtuu virhe, välitetään se luokkaa käyttävälle ohjelmalle
+        except (Exception, psycopg2.Error) as e:
+            raise e 
+        finally:
+
+            # Selvitetään muodostuiko yhteysolio
+            if currentConnection:
+                cursor.close() # Tuhotaan kursori
+                currentConnection.close() # Tuhotaan yhteys
         
 if __name__ == "__main__":
 
