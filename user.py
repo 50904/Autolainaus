@@ -59,6 +59,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Äänet oletuksena pois käytössä
         self.soundOn = False
 
+        self.defaultVehiclePicture = QPixmap('uiPictures\\defaultVehicles.png')
+
         # Ohjelman käynnistyksessä piilotetaan tarpeettomat elementit
         self.setInitialElements()
 
@@ -136,7 +138,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.carInfoLabel.hide()
         self.ui.okPushButton.setEnabled(True)
         self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.ui.okPushButton.setEnabled(True)
         
+
+        # Palautetaan auton oletuskuva
+        self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
+
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword

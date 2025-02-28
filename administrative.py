@@ -64,7 +64,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Asetetaan auton oletuskuvaksi harmaa kamera
         self.vehiclePicture = 'uiPictures\\noPicture.png'
+        
+        # Poistettavan auton rekisterinumero
         self.vehicleToDelete = ''
+        self.personToDelete = ''
+        self.groupToDelete = ''
 
        
 
@@ -86,9 +90,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.saveVehiclePushButton.clicked.connect(self.saveVehicle)
         self.ui.openPicturePushButton.clicked.connect(self.openPicture)
         self.ui.removeVehiclePushButton.clicked.connect(self.deleteVehicle)
-        
+        self.ui.deletePersonPushButton.clicked.connect(self.deletePerson)
+        self.ui.deleteGroupPushButton.clicked.connect(self.deleteGroup)
+
         # Taulukon soluvalinnat
         self.ui.vechicleCatalogTableWidget.cellClicked.connect(self.setRegisterNumber)
+        self.ui.registeredPersonTableWidget.cellClicked.connect(self.setSSN)
+        self.ui.saveGroupTabelWidget.cellClicked.connect(self.setGroup)
 
     # OHJELMOIDUT SLOTIT
     # ==================
@@ -121,7 +129,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateLenderTableWidget() # Lainaajien tiedot
         self.updateVehicleTableWidget() # Autojen tiedot
         self.updateGroupTableWidget() # Ryhmien tiedot
-        self.ui.removeVehiclePushButton.setEnabled(False)
+        self.updateDiaryTableWidget() # Ajopäiväkirja
+        self.ui.removeVehiclePushButton.setEnabled(False) # Otetaan auton poisto-painike
+        self.ui.deleteGroupPushButton.setEnabled(False) # Lainaajan poisto-painike
+        self.ui.deletePersonPushButton.setEnabled(False) # Ryhmän poisto-painike
    
     # Välilehtien slotit
     # ------------------
@@ -160,6 +171,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.ui.vehicleTypeComboBox.clear()
         self.ui.vehicleTypeComboBox.addItems(typeStringList)
+
+        # Lista ajopäiväkirjoista -> raporttinäkymien nimet
+        self.ui.reportTypecomboBox.addItem('Ajopäiväkirja - kaikki')
 
     # Lainaajat-taulukon päivitys
     def updateLenderTableWidget(self):
@@ -242,7 +256,35 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
                 self.ui.savedGroupsTableWidget.setItem(row, column, data)
 
-        
+
+    # Päivitetään ajopäiväkirjan taulukko
+    def updateDiaryTableWidget(self):
+            # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+
+        # Luodaan tietokantayhteys-olio
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Tehdään lista lainaaja-taulun tiedoista
+        tableData = dbConnection.readAllColumnsFromTable('ajopaivakirja')
+
+        # Tyhjennetään vanhat tiedot käyttölliittymästä ennen uudien lukemista tietokannasta
+        self.ui.diarytableWidget.clearContents()
+
+        # Määritellään taulukkoelementin otsikot
+        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Sukunimi', 'Etunimi', 'Ryhmä', 'Otettu', 'Palautettu']
+        self.ui.diarytableWidget.setHorizontalHeaderLabels(headerRow)
+
+        # Asetetaan taulukon solujen arvot
+        for row in range(len(tableData)): # Luetaan listaa riveittäin
+            for column in range(len(tableData[row])): # Luetaan monikkoa sarakkeittain
+                
+                # Muutetaan merkkijonoksi ja QTableWidgetItem-olioksi
+                data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
+                self.ui.diarytableWidget.setItem(row, column, data)
+
     # Painikkeiden slotit
     # -----------------
 
@@ -258,7 +300,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Määritellään tallennusmetodin vaatimat parametrit
         tableName = 'ryhma'
         group = self.ui.groupNameLineEdit.text()
-        responsiblePerson = self.ui.responsiblePLineEdit.text()
+        responsiblePerson = self.ui.responsiblePersonLineEdit.text()
         groupDictionary = {'ryhma': group,
                           'vastuuhenkilo': responsiblePerson }
         
@@ -359,6 +401,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         with open(self.vehiclePicture, 'rb') as pictureFile:
             pictureData = pictureFile.read()
 
+            # Tätä voisi muokata siten, että tallennetaan tietokantaan pixmap
+            # Jolloin user.py:ssä voitaisiin suoraan päivittää auton kuva
+            # tallentamatta sitä ensi levylle.
+
         # Luodaan uusi yhteys, koska edellinen suljettiin    
         dbConnection2 = dbOperations.DbConnection(dbSettings)
 
@@ -386,6 +432,40 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except Exception as e:
             self.openWarning('Poisto ei onnistunut', str(e)) 
 
+
+    def deletePerson(self):
+        # Määritellään tietokanta-asetukset
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword
+        # Luodaan tietokantayhteys-olio
+
+
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Kutsutaan tallennusmetodia
+        try:
+            dbConnection.deleteRowsFromTable('lainaaja', 'hetu', f"'{self.personToDelete}'")
+            self.refreshUi()
+        except Exception as e:
+            self.openWarning('Poisto ei onnistunut', str(e)) 
+
+    def deleteGroup(self):
+        # Määritellään tietokanta-asetukset
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword
+        # Luodaan tietokantayhteys-olio
+
+
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Kutsutaan tallennusmetodia
+        try:
+            dbConnection.deleteRowsFromTable('lainaaja', 'hetu', f"'{self.personToDelete}'")
+            self.refreshUi()
+        except Exception as e:
+            self.openWarning('Poisto ei onnistunut', str(e)) 
     # Taulukoiden soluvalinnat
     # ------------------------
 
@@ -395,11 +475,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cellValue = ''
 
         # Haetaan aktiivisen solun rivi ja ensimmäisen sarakkeen arvo siltä riviltä
-        rowIndex = self.ui.vechicleCatalogTableWidget.currentRow()
-        cellValue = self.ui.vechicleCatalogTableWidget.item(rowIndex, columnIndex).text()
-        self.vehicleToDelete = cellValue
+        rowIndex = self.ui.registeredPersonTableWidget.currentRow()
+        cellValue = self.ui.registeredPersonTableWidget.item(rowIndex, columnIndex).text()
+        self.personToDelete = cellValue
         self.ui.statusbar.showMessage(f'valitun auton reksiterinumero on {cellValue}')
         self.ui.removeVehiclePushButton.setEnabled(True)
+
+    def setSSN(self):
+        rowIndex = 0
+        columnIndex = 0
+        cellValue = ''
+
+        # Haetaan aktiivisen solun rivi ja ensimmäisen sarakkeen arvo siltä riviltä
+        rowIndex = self.ui.vechicleCatalogTableWidget.currentRow()
+        cellValue = self.ui.vechicleCatalogTableWidget.item(rowIndex, columnIndex).text()
+        self.personToDelete = cellValue
+        self.ui.statusbar.showMessage(f'valitun käyttäjän henkilötunnus on {cellValue}')
+        self.ui.deletePersonPushButton.setEnabled(True)
+
+
+    def setGroup(self):
+        rowIndex = 0
+        columnIndex = 0
+        cellValue = ''
+
+        # Haetaan aktiivisen solun rivi ja ensimmäisen sarakkeen arvo siltä riviltä
+        rowIndex = self.ui.saveGroupTabelWidget.currentRow()
+        cellValue = self.ui.saveGroupTabelWidget.item(rowIndex, columnIndex).text()
+        self.groupToDelete = cellValue
+        self.ui.statusbar.showMessage(f'valitun ryhmän nimi on {cellValue}')
+        self.ui.deleteGroupPushButton.setEnabled(True)
+
 
     # Virheilmoitukset ja muut Message Box -dialogit
     # ----------------------------------------------
